@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PeptideJournal - Research Tracking Made Simple</title>
+  <meta name="description" content="Professional peptide research tracking app for iOS. Secure, private, and designed for researchers." />
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    body { font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; line-height: 1.6; }
+    
+    header { padding: 12px 16px; border-bottom: 1px solid #ddd; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
+    .nav { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 12px; }
+    .brand { font-weight: 800; letter-spacing: 0.2px; color: #007AFF; }
+    .links { display: flex; gap: 20px; }
+    .links a { color: inherit; text-decoration: none; font-weight: 600; transition: color 0.2s; }
+    .links a:hover { color: #007AFF; }
+    
+    .hero { background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%); color: white; padding: 80px 16px; text-align: center; }
+    .hero-content { max-width: 800px; margin: 0 auto; }
+    .hero h1 { font-size: 3.5rem; font-weight: 800; margin: 0 0 24px; letter-spacing: -0.02em; }
+    .hero p { font-size: 1.25rem; margin: 0 0 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .cta-button { display: inline-block; background: white; color: #007AFF; padding: 16px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; }
+    .cta-button:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(0,0,0,0.15); }
+    
+    .features { padding: 80px 16px; background: #f8f9fa; }
+    .features-content { max-width: 1200px; margin: 0 auto; }
+    .features h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin: 0 0 60px; color: #1a1a1a; }
+    .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
+    .feature { text-align: center; padding: 40px 20px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
+    .feature-icon { width: 64px; height: 64px; background: linear-gradient(135deg, #007AFF, #5856D6); border-radius: 16px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .feature h3 { font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; color: #1a1a1a; }
+    .feature p { color: #666; margin: 0; }
+    
+    .privacy { padding: 80px 16px; }
+    .privacy-content { max-width: 800px; margin: 0 auto; text-align: center; }
+    .privacy h2 { font-size: 2.5rem; font-weight: 700; margin: 0 0 24px; color: #1a1a1a; }
+    .privacy p { font-size: 1.1rem; color: #666; margin: 0 0 40px; }
+    .privacy-badge { display: inline-flex; align-items: center; gap: 12px; background: #e8f5e8; color: #2d5a2d; padding: 16px 24px; border-radius: 12px; font-weight: 600; }
+    
+    .download { padding: 80px 16px; background: #1a1a1a; color: white; text-align: center; }
+    .download-content { max-width: 600px; margin: 0 auto; }
+    .download h2 { font-size: 2.5rem; font-weight: 700; margin: 0 0 24px; }
+    .download p { font-size: 1.1rem; opacity: 0.8; margin: 0 0 40px; }
+    .app-store-button { display: inline-block; background: white; color: #1a1a1a; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: transform 0.2s; }
+    .app-store-button:hover { transform: translateY(-2px); }
+    
+    footer { border-top: 1px solid #ddd; padding: 40px 16px; text-align: center; color: #666; background: #f8f9fa; }
+    .footer-content { max-width: 1200px; margin: 0 auto; }
+    .footer-links { display: flex; justify-content: center; gap: 32px; margin: 0 0 24px; }
+    .footer-links a { color: #666; text-decoration: none; font-weight: 500; }
+    .footer-links a:hover { color: #007AFF; }
+    
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .hero p { font-size: 1.1rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .footer-links { flex-direction: column; gap: 16px; }
+      .links { gap: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="nav">
+      <div class="brand">PeptideJournal</div>
+      <nav class="links">
+        <a href="index.html" aria-current="page">Home</a>
+        <a href="support.html">Support</a>
+        <a href="privacy-policy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Research Tracking Made Simple</h1>
+      <p>Professional peptide research tracking designed for researchers who value privacy, precision, and simplicity.</p>
+      <a href="#features" class="cta-button">Learn More</a>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <div class="features-content">
+      <h2>Built for Researchers</h2>
+      <div class="features-grid">
+        <div class="feature">
+          <div class="feature-icon">📊</div>
+          <h3>Precise Tracking</h3>
+          <p>Advanced dose calculations, inventory management, and detailed analytics to support your research workflow.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🔒</div>
+          <h3>Complete Privacy</h3>
+          <p>All data stays on your device. No cloud storage, no tracking, no external servers. Your research remains confidential.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📱</div>
+          <h3>Native iOS Design</h3>
+          <p>Built specifically for iOS with SwiftData integration, offering seamless performance and familiar interface patterns.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">📅</div>
+          <h3>Smart Scheduling</h3>
+          <p>Integrated calendar views, reminder systems, and historical tracking to maintain consistent research protocols.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">💾</div>
+          <h3>Secure Backups</h3>
+          <p>Local backup functionality with optional iCloud sync. Your data is protected and always recoverable.</p>
+        </div>
+        <div class="feature">
+          <div class="feature-icon">🧮</div>
+          <h3>Advanced Calculator</h3>
+          <p>Sophisticated dosage calculations with support for multiple peptides, concentrations, and administration methods.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="privacy">
+    <div class="privacy-content">
+      <h2>Privacy First</h2>
+      <p>PeptideJournal is designed with privacy as a core principle. No personal information is collected, transmitted, or stored on external servers.</p>
+      <div class="privacy-badge">
+        <span>🛡️</span>
+        <span>100% Local Data Storage</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="download">
+    <div class="download-content">
+      <h2>Available on iOS</h2>
+      <p>Download PeptideJournal from the App Store and start tracking your research with confidence.</p>
+      <a href="#" class="app-store-button">Coming Soon to App Store</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="support.html">Support</a>
+        <a href="privacy-policy.html">Privacy Policy</a>
+      </div>
+      <p>© 2025 PeptideJournal. Built for researchers, by researchers.</p>
+    </div>
+  </footer>
+</body>
+</html>
