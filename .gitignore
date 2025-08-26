@@ -1,0 +1,5 @@
+# macOS
+.DS_Store
+
+# Node/npm (future-proof if you add tooling)
+node_modules/
