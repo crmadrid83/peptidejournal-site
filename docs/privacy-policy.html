@@ -44,6 +44,19 @@
         .contact { background-color: #f9f9f9; padding: 20px; border-radius: 8px; margin-top: 30px; }
         a { color: #e11d48; text-decoration: none; font-weight: 700; }
         footer { border-top: 1px solid #ddd; padding: 16px; text-align: center; color: #666; }
+
+        /* Dark theme to match homepage */
+        .theme-dark body { background: #0d1117; color: #c9d1d9; }
+        .theme-dark header { background: rgba(13,17,23,0.9); border-bottom-color: #30363d; }
+        .theme-dark .links a { color: #c9d1d9; }
+        .theme-dark .links a:hover { color: #58a6ff; }
+        .theme-dark .brand { color: #58a6ff; }
+        .theme-dark h1 { color: #58a6ff; border-bottom-color: #30363d; }
+        .theme-dark h2 { color: #e6edf3; }
+        .theme-dark .highlight { background-color: #0a1f3a; border-left-color: #58a6ff; }
+        .theme-dark .contact { background-color: #0f141b; }
+        .theme-dark a { color: #ff5a7a; }
+        .theme-dark footer { border-top-color: #30363d; color: #9aa7b3; background: #0f141b; }
     </style>
 </head>
 <body>
@@ -129,4 +142,17 @@
         © 2025 PeptideJournal
     </footer>
 </body>
+<script>
+  (function () {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var t = (params.get('theme') || '').toLowerCase();
+      if (t !== 'light') {
+        document.documentElement.classList.add('theme-dark');
+      } else {
+        document.documentElement.classList.remove('theme-dark');
+      }
+    } catch (e) {}
+  })();
+</script>
 </html>
