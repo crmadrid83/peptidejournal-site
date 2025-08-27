@@ -105,6 +105,40 @@
       .links { gap: 16px; }
       .store-badge img { height: 48px; }
     }
+
+    /* Optional professional dark theme (activated with ?theme=dark) */
+    .theme-dark body { background: #0d1117; color: #c9d1d9; }
+    .theme-dark header { background: rgba(13,17,23,0.9); border-bottom-color: #30363d; }
+    .theme-dark .links a { color: #c9d1d9; }
+    .theme-dark .links a:hover { color: #58a6ff; }
+    .theme-dark .brand { color: #58a6ff; }
+
+    .theme-dark .hero { background: radial-gradient(1200px 600px at 50% -10%, #0b5ed7 0%, #0a3d7a 45%, #0a1f3a 100%); }
+    .theme-dark .hero p { opacity: 0.95; }
+    .theme-dark .cta-button { background: #161b22; color: #58a6ff; border: 1px solid #30363d; }
+    .theme-dark .cta-button:hover { box-shadow: 0 8px 25px rgba(0,0,0,0.35); }
+
+    .theme-dark .features { background: #0f141b; }
+    .theme-dark .features h2 { color: #e6edf3; }
+    .theme-dark .feature { background: #0d1117; border: 1px solid #22272e; box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
+    .theme-dark .feature h3 { color: #e6edf3; }
+    .theme-dark .feature p { color: #9aa7b3; }
+
+    .theme-dark .privacy { background: #0d1117; }
+    .theme-dark .privacy h2 { color: #e6edf3; }
+    .theme-dark .privacy p { color: #9aa7b3; }
+    .theme-dark .privacy-badge { background: #122b19; color: #7ee787; border: 1px solid #20472c; }
+    .theme-dark .privacy p[style] { background: #3a2e00 !important; border-color: #665200 !important; color: #ffdd57 !important; }
+
+    .theme-dark .screenshots { background: #0f141b; }
+    .theme-dark .screenshots h2 { color: #e6edf3; }
+    .theme-dark .screenshots p { color: #9aa7b3; }
+    .theme-dark .screenshot-img { border-color: #22272e; box-shadow: 0 8px 30px rgba(0,0,0,0.45); }
+
+    .theme-dark .download { background: #0b1320; color: #e6edf3; }
+    .theme-dark .footer-links a { color: #9aa7b3; }
+    .theme-dark .footer-links a:hover { color: #58a6ff; }
+    .theme-dark footer { background: #0f141b; color: #9aa7b3; border-top-color: #30363d; }
   </style>
 </head>
 <body>
@@ -299,5 +333,15 @@
       <p>© 2025 PeptideJournal. For personal tracking use only. Not medical advice.</p>
     </div>
   </footer>
+  <script>
+    (function () {
+      try {
+        var params = new URLSearchParams(window.location.search);
+        if (params.get('theme') === 'dark') {
+          document.documentElement.classList.add('theme-dark');
+        }
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>
