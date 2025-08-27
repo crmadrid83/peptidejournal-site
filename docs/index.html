@@ -55,7 +55,8 @@
     .features h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin: 0 0 60px; color: #1a1a1a; }
     .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; }
     .feature { text-align: center; padding: 40px 20px; background: white; border-radius: 16px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); }
-    .feature-icon { width: 64px; height: 64px; background: linear-gradient(135deg, #007AFF, #5856D6); border-radius: 16px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .feature-icon { width: 80px; height: 80px; background: linear-gradient(135deg, #007AFF, #5856D6); border-radius: 18px; margin: 0 auto 24px; display: flex; align-items: center; justify-content: center; font-size: 32px; border: 2px solid #3fa2ff; box-shadow: 0 6px 18px rgba(0,122,255,0.25); transition: transform 120ms ease, box-shadow 120ms ease; }
+    .feature:hover .feature-icon { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(0,122,255,0.35); }
     .feature h3 { font-size: 1.5rem; font-weight: 700; margin: 0 0 16px; color: #1a1a1a; }
     .feature p { color: #666; margin: 0; }
     
@@ -104,6 +105,7 @@
       .footer-links { flex-direction: column; gap: 16px; }
       .links { gap: 16px; }
       .store-badge img { height: 48px; }
+      .feature-icon { width: 72px; height: 72px; font-size: 28px; }
     }
 
     /* Optional professional dark theme (activated with ?theme=dark) */
@@ -123,6 +125,7 @@
     .theme-dark .feature { background: #0d1117; border: 1px solid #22272e; box-shadow: 0 4px 24px rgba(0,0,0,0.35); }
     .theme-dark .feature h3 { color: #e6edf3; }
     .theme-dark .feature p { color: #9aa7b3; }
+    .theme-dark .feature-icon { border-color: #58a6ff; box-shadow: 0 6px 18px rgba(88,166,255,0.25); }
 
     .theme-dark .privacy { background: #0d1117; }
     .theme-dark .privacy h2 { color: #e6edf3; }
