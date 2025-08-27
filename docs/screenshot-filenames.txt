@@ -1,0 +1,36 @@
+Screenshot files needed for PeptideJournal website:
+
+Save your app screenshots with these exact filenames in this folder:
+
+1. screenshot-calculator-dose.png
+   - Main dose calculator interface
+
+2. screenshot-calculator-semaglutide.png  
+   - Semaglutide-specific calculator view
+
+3. screenshot-inventory.png
+   - Inventory management screen
+
+4. screenshot-history.png
+   - Dose history tracking view
+
+5. screenshot-analytics-usage.png
+   - Usage analytics dashboard
+
+6. screenshot-analytics-side-effects.png
+   - Side effects tracking interface
+
+7. screenshot-analytics-benefits-dark.png
+   - Benefits analysis in dark mode
+
+8. screenshot-analytics-benefits-light.png
+   - Benefits analysis in light mode
+
+9. screenshot-calculator-result.png
+   - Calculator results/precision screen
+
+Instructions:
+- Take screenshots of your iOS app showing these features
+- Save each screenshot as a PNG file with the exact filename above
+- Place all files in this same folder (/docs/)
+- The website will automatically display them once saved

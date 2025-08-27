@@ -35,13 +35,16 @@
     
     header { padding: 12px 16px; border-bottom: 1px solid #ddd; background: rgba(255,255,255,0.95); backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100; }
     .nav { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; gap: 12px; }
-    .brand { font-weight: 800; letter-spacing: 0.2px; color: #007AFF; }
+    .brand { font-weight: 800; letter-spacing: 0.2px; color: #007AFF; display: flex; align-items: center; gap: 8px; }
+    .brand-logo { width: 24px; height: 24px; border-radius: 6px; }
     .links { display: flex; gap: 20px; }
     .links a { color: inherit; text-decoration: none; font-weight: 600; transition: color 0.2s; }
     .links a:hover { color: #007AFF; }
     
     .hero { background: linear-gradient(135deg, #007AFF 0%, #5856D6 100%); color: white; padding: 80px 16px; text-align: center; }
     .hero-content { max-width: 800px; margin: 0 auto; }
+    .app-logo { margin-bottom: 32px; }
+    .app-logo img { border-radius: 24px; box-shadow: 0 8px 32px rgba(0,0,0,0.2); }
     .hero h1 { font-size: 3.5rem; font-weight: 800; margin: 0 0 24px; letter-spacing: -0.02em; }
     .hero p { font-size: 1.25rem; margin: 0 0 40px; opacity: 0.9; max-width: 600px; margin-left: auto; margin-right: auto; }
     .cta-button { display: inline-block; background: white; color: #007AFF; padding: 16px 32px; border-radius: 12px; font-weight: 700; text-decoration: none; font-size: 1.1rem; transition: transform 0.2s, box-shadow 0.2s; }
@@ -69,6 +72,19 @@
     .app-store-button { display: inline-block; background: white; color: #1a1a1a; padding: 12px 24px; border-radius: 8px; font-weight: 600; text-decoration: none; transition: transform 0.2s; }
     .app-store-button:hover { transform: translateY(-2px); }
     
+    .screenshots { padding: 80px 16px; background: white; }
+    .screenshots-content { max-width: 1200px; margin: 0 auto; text-align: center; }
+    .screenshots h2 { font-size: 2.5rem; font-weight: 700; margin: 0 0 24px; color: #1a1a1a; }
+    .screenshots p { font-size: 1.1rem; color: #666; margin: 0 0 60px; }
+    .screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; max-width: 1400px; margin: 0 auto; }
+    .screenshot-item { text-align: center; transition: transform 0.3s ease; }
+    .screenshot-item:hover { transform: translateY(-8px); }
+    .screenshot-img { width: 100%; max-width: 280px; height: auto; border-radius: 16px; box-shadow: 0 8px 25px rgba(0,0,0,0.12); margin-bottom: 16px; border: 1px solid #e1e5e9; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .screenshot-item:hover .screenshot-img { transform: scale(1.02); box-shadow: 0 12px 35px rgba(0,0,0,0.18); }
+    .screenshot-caption { padding: 0 10px; }
+    .screenshot-caption h4 { font-size: 1.3rem; font-weight: 700; margin: 0 0 12px; color: #1a1a1a; }
+    .screenshot-caption p { font-size: 1rem; color: #666; margin: 0; line-height: 1.5; }
+    
     footer { border-top: 1px solid #ddd; padding: 40px 16px; text-align: center; color: #666; background: #f8f9fa; }
     .footer-content { max-width: 1200px; margin: 0 auto; }
     .footer-links { display: flex; justify-content: center; gap: 32px; margin: 0 0 24px; }
@@ -87,7 +103,10 @@
 <body>
   <header>
     <div class="nav">
-      <div class="brand">PeptideJournal</div>
+      <div class="brand">
+        <img src="app-logo.jpg" alt="PeptideJournal" class="brand-logo">
+        PeptideJournal
+      </div>
       <nav class="links">
         <a href="index.html" aria-current="page">Home</a>
         <a href="support.html">Support</a>
@@ -98,6 +117,9 @@
 
   <section class="hero">
     <div class="hero-content">
+      <div class="app-logo">
+        <img src="app-logo.jpg" alt="PeptideJournal App Icon" width="120" height="120">
+      </div>
       <h1>Research Tracking Made Simple</h1>
       <p>Professional peptide research tracking designed for researchers who value privacy, precision, and simplicity.</p>
       <a href="#features" class="cta-button">Learn More</a>
@@ -149,6 +171,78 @@
       <div class="privacy-badge">
         <span>🛡️</span>
         <span>100% Local Data Storage</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="screenshots">
+    <div class="screenshots-content">
+      <h2>See PeptideJournal in Action</h2>
+      <p>Explore the intuitive interface designed specifically for peptide research tracking.</p>
+      <div class="screenshots-grid">
+        <div class="screenshot-item">
+          <img src="screenshot-calculator-dose.png" alt="Dose Calculator - BPC-157 calculation with syringe visualization" class="screenshot-img">
+          <div class="screenshot-caption">
+            <h4>Advanced Dose Calculator</h4>
+            <p>Precise calculations with visual syringe guide and weight tracking integration</p>
+          </div>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-calculator-semaglutide.png" alt="Semaglutide calculation with 50-unit syringe" class="screenshot-img">
+          <div class="screenshot-caption">
+            <h4>Multi-Peptide Support</h4>
+            <p>Calculate doses for various peptides with different syringe types and concentrations</p>
+          </div>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-inventory.png" alt="Inventory management showing multiple peptides with remaining doses" class="screenshot-img">
+          <div class="screenshot-caption">
+            <h4>Smart Inventory Management</h4>
+            <p>Track multiple peptides, remaining doses, and get low-stock alerts</p>
+          </div>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-history.png" alt="Detailed dose history with side effects and benefits tracking" class="screenshot-img">
+          <div class="screenshot-caption">
+            <h4>Complete Dose History</h4>
+            <p>Track every dose with timestamps, routes, and effects for comprehensive records</p>
+          </div>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-analytics-usage.png" alt="Analytics dashboard with peptide usage statistics" class="screenshot-img">
+          <div class="screenshot-caption">
+            <h4>Usage Analytics</h4>
+            <p>Monitor dosing patterns, consistency, and overall research progress</p>
+          </div>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-analytics-side-effects.png" alt="Side effects analysis with detailed breakdown" class="screenshot-img">
+          <div class="screenshot-caption">
+            <h4>Side Effects Tracking</h4>
+            <p>Detailed monitoring and visualization of any adverse reactions</p>
+          </div>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-analytics-benefits-dark.png" alt="Benefits analysis in dark mode showing detailed categories" class="screenshot-img">
+          <div class="screenshot-caption">
+            <h4>Benefits Analysis</h4>
+            <p>Comprehensive tracking of positive effects across multiple categories</p>
+          </div>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-analytics-benefits-light.png" alt="Benefits analysis in light mode with detailed breakdown" class="screenshot-img">
+          <div class="screenshot-caption">
+            <h4>Detailed Benefits Breakdown</h4>
+            <p>Track workout recovery, sleep quality, mood improvements, and more</p>
+          </div>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-calculator-result.png" alt="Calculator showing TB-500 dose calculation results" class="screenshot-img">
+          <div class="screenshot-caption">
+            <h4>Precision Results</h4>
+            <p>Accurate measurements with clear dosing instructions and volume calculations</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
