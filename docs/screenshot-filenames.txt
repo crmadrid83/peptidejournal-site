@@ -5,8 +5,8 @@ Save your app screenshots with these exact filenames in this folder:
 1. screenshot-calculator-dose.png
    - Main dose calculator interface
 
-2. screenshot-calculator-semaglutide.png  
-   - Semaglutide-specific calculator view
+2. screenshot-calculator-peptide.png  
+   - Generic peptide calculator view
 
 3. screenshot-inventory.png
    - Inventory management screen
