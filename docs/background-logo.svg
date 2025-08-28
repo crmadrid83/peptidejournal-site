@@ -1,0 +1,21 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background circle -->
+  <circle cx="100" cy="100" r="100" fill="#000000"/>
+  
+  <!-- Blue vial outline -->
+  <g transform="translate(100, 100)">
+    <!-- Vial body -->
+    <rect x="-15" y="-25" width="30" height="40" rx="3" ry="3" fill="none" stroke="#007AFF" stroke-width="3"/>
+    
+    <!-- Vial cap -->
+    <rect x="-18" y="-35" width="36" height="10" rx="2" ry="2" fill="none" stroke="#007AFF" stroke-width="3"/>
+    
+    <!-- Cross symbol -->
+    <g transform="translate(0, -5)">
+      <!-- Horizontal bar -->
+      <rect x="-8" y="-2" width="16" height="4" fill="#007AFF"/>
+      <!-- Vertical bar -->
+      <rect x="-2" y="-8" width="4" height="16" fill="#007AFF"/>
+    </g>
+  </g>
+</svg>
