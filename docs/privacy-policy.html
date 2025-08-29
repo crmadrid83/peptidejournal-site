@@ -85,8 +85,8 @@
     <p>PeptideJournal is designed with privacy in mind. The app:</p>
     <ul>
         <li><strong>Does NOT collect personal information</strong> - No names, emails, or contact details</li>
-        <li><strong>Does NOT transmit data</strong> - All information stays on your device</li>
-        <li><strong>Does NOT use analytics</strong> - No tracking or usage statistics</li>
+        <li><strong>Does NOT transmit app data</strong> - All app information stays on your device</li>
+        <li><strong>Uses privacy-friendly, cookie-free website analytics</strong> on peptidejournal.net only, to understand aggregate traffic (page views, referrers, device types, countries). No personal data is collected or stored, and no cross-site tracking occurs.</li>
         <li><strong>Does NOT require accounts</strong> - No sign-up or login required</li>
     </ul>
 
@@ -108,7 +108,11 @@
     </ul>
 
     <h2>4. Third-Party Services</h2>
-    <p>PeptideJournal does not integrate with any third-party services, analytics platforms, or advertising networks.</p>
+    <p>
+      The iOS app does not integrate with any third-party services, analytics platforms, or advertising networks.
+      Our public website (peptidejournal.net) uses a <strong>cookie-free, privacy-first web analytics beacon</strong> to measure aggregate usage.
+      It does not collect personally identifiable information (PII), does not set cookies, and does not track users across sites.
+    </p>
 
     <h2>5. Data Security</h2>
     <p>Your data is protected by:</p>
@@ -156,3 +160,7 @@
   })();
 </script>
 </html>
+<!-- Cloudflare Web Analytics -->
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon='{"token": "94c9950a03c84eb2b6abfdce9a67edee"}'></script>
+<!-- End Cloudflare Web Analytics -->
