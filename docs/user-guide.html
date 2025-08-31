@@ -251,6 +251,17 @@
         flex-direction: column; 
         gap: 16px; 
       }
+      .tabs {
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 8px;
+      }
+      .tab {
+        flex: 1 1 calc(50% - 4px);
+        min-width: calc(50% - 4px);
+        padding: 10px 8px;
+        font-size: 0.9rem;
+      }
     }
   </style>
   
@@ -345,17 +356,34 @@ Syringe Units = Volume × Syringe Scale Factor
       </div>
     </div>
 
-    <h2 id="history">📝 Dose Logging</h2>
-    <p>Comprehensive tracking of every injection with detailed metadata.</p>
+    <h2 id="history">📝 History & Dose Logging</h2>
+    <p>Complete chronological record of all your injections with comprehensive filtering and search capabilities.</p>
+
+    <h3>History Tab Features</h3>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Chronological Timeline</h4>
+        <p>View all doses in reverse chronological order. Each entry shows peptide name, dose amount, date/time, and quick effect indicators.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Advanced Filtering</h4>
+        <p>Filter by specific peptides, date ranges, injection routes, or effect types. Quickly find patterns in your dosing history.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Swipe Actions</h4>
+        <p>Edit entries, add effects retroactively, or delete incorrect logs with simple swipe gestures on each history item.</p>
+      </div>
+    </div>
 
     <h3>What Gets Recorded</h3>
     <ul>
-      <li><span class="highlight">Date & Time</span> - Automatic timestamp</li>
-      <li><span class="highlight">Peptide & Dose</span> - Name and intended amount</li>
-      <li><span class="highlight">Volume & Route</span> - Actual injection details</li>
-      <li><span class="highlight">Side Effects</span> - Predefined options plus custom entries</li>
-      <li><span class="highlight">Benefits</span> - Positive effects tracking</li>
-      <li><span class="highlight">Notes</span> - Injection sites and personal observations</li>
+      <li><span class="highlight">Date & Time</span> - Automatic timestamp with precise timing</li>
+      <li><span class="highlight">Peptide & Dose</span> - Name, intended dose, and actual volume injected</li>
+      <li><span class="highlight">Syringe Details</span> - Type (insulin/TB), scale, and unit display preferences</li>
+      <li><span class="highlight">Injection Route</span> - Subcutaneous, intramuscular, or other</li>
+      <li><span class="highlight">Side Effects</span> - Predefined categories plus custom "other" entries</li>
+      <li><span class="highlight">Benefits</span> - Positive effects with detailed tracking options</li>
+      <li><span class="highlight">Notes & Sites</span> - Injection locations and personal observations</li>
     </ul>
 
     <h2 id="analytics">📊 Analytics & Insights</h2>
@@ -377,13 +405,31 @@ Syringe Units = Volume × Syringe Scale Factor
       </div>
     </div>
 
-    <h3>Visual Data Analysis</h3>
-    <ul>
-      <li><strong>Peptide Usage Charts</strong> - Pie charts showing your most-used compounds</li>
-      <li><strong>Side Effect Trends</strong> - Weekly bar charts tracking adverse effects</li>
-      <li><strong>Benefits Analysis</strong> - Positive effects breakdown and frequency</li>
-      <li><strong>Weight Integration</strong> - HealthKit sync for weight trend tracking</li>
-    </ul>
+    <h3>How to Interpret Your Analytics</h3>
+    
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>📊 Pie Charts</h4>
+        <p><strong>Peptide Usage:</strong> Shows proportion of total doses per peptide. Larger slices = more frequently used compounds.</p>
+        <p><strong>Side Effects:</strong> Displays which adverse effects occur most often. Monitor red sections for concerning patterns.</p>
+        <p><strong>Benefits:</strong> Highlights positive effects frequency. Green sections show your most effective outcomes.</p>
+      </div>
+      <div class="feature-card">
+        <h4>📈 Trend Charts</h4>
+        <p><strong>Side Effect Bars:</strong> Weekly view with color coding - Green (none), Orange (1-2), Red (3+). Upward trends may indicate dosing issues.</p>
+        <p><strong>Weight Trends:</strong> 90-day swipeable chart. Look for correlations between peptide cycles and weight changes.</p>
+      </div>
+      <div class="feature-card">
+        <h4>🏆 Top Performer</h4>
+        <p>Algorithm ranks peptides by effectiveness score. Higher scores indicate better benefit-to-side-effect ratios. Requires minimum 3 doses for accuracy.</p>
+      </div>
+      <div class="feature-card">
+        <h4>⚡ Consistency Badges</h4>
+        <p><strong>Perfect Week (7 days):</strong> Yellow badge with crown icon</p>
+        <p><strong>Consistency Master (14 days):</strong> Blue badge with target icon</p>
+        <p><strong>Early Bird (30 days):</strong> Green badge with sun icon</p>
+      </div>
+    </div>
 
     <h3>Smart Inventory Alerts</h3>
     <div class="code-block">
@@ -391,56 +437,66 @@ Days Until Reorder = Remaining Doses ÷ (30-Day Usage ÷ 30)
     </div>
     <p>Color-coded alerts: <span style="color: red;">Red (order now)</span>, <span style="color: orange;">Orange (1-7 days)</span>, <span style="color: #f39c12;">Yellow (8-14 days)</span>, <span style="color: green;">Green (all good)</span></p>
 
-    <h2 id="calendar">⏰ Reminder System</h2>
-    <p>Never miss a dose with intelligent scheduling and notifications.</p>
+    <h2 id="calendar">📅 Calendar & Reminders</h2>
+    <p>Visual scheduling system with intelligent notifications to maintain consistent dosing routines.</p>
 
+    <h3>Calendar Tab Features</h3>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Monthly View</h4>
+        <p>See your entire month at a glance with dose indicators on each day. Quickly identify patterns and missed doses.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Day Details</h4>
+        <p>Tap any day to see detailed dose history, planned reminders, and add past doses with accurate timestamps.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Visual Indicators</h4>
+        <p>Color-coded dots show dose status - completed doses, missed reminders, and upcoming scheduled injections.</p>
+      </div>
+    </div>
+
+    <h3>Reminder System</h3>
     <div class="feature-grid">
       <div class="feature-card">
         <h4>Custom Schedules</h4>
-        <p>Set unique timing for each peptide - daily, every other day, weekly, or custom intervals.</p>
+        <p>Set unique timing for each peptide - daily, every other day, weekly, or custom intervals with specific times.</p>
       </div>
       <div class="feature-card">
         <h4>Smart Notifications</h4>
-        <p>Contextual alerts with peptide name, dose amount, and remaining supply information.</p>
+        <p>Contextual alerts with peptide name, recommended dose, remaining supply, and quick action buttons.</p>
       </div>
       <div class="feature-card">
         <h4>Sound Options</h4>
-        <p>Choose from Default, Gentle, Urgent, Critical, or Silent notification sounds.</p>
+        <p>Choose from Default, Gentle, Urgent, Critical, or Silent notification sounds for different reminder types.</p>
       </div>
     </div>
 
     <h2>🔒 Privacy & Data</h2>
     <p>Your health data stays secure and private with local storage and optional integrations.</p>
 
-    <h3>Data Storage</h3>
+    <h3>Data Storage & Security</h3>
     <ul>
-      <li><strong>Local Database</strong> - All data stored on your device using SwiftData</li>
+      <li><strong>Local Database</strong> - All data stored on your device using SwiftData with SQLite backend</li>
       <li><strong>No Cloud Sync</strong> - Data never leaves your device without your permission</li>
-      <li><strong>HealthKit Integration</strong> - Optional weight sync (user controlled)</li>
-      <li><strong>Export/Import</strong> - CSV backup for data portability</li>
+      <li><strong>HealthKit Integration</strong> - Optional weight sync (requires explicit permission)</li>
+      <li><strong>CSV Export/Import</strong> - Full data portability for backup, analysis, or device migration</li>
+      <li><strong>Data Integrity</strong> - Automatic validation and recovery mechanisms protect against corruption</li>
     </ul>
 
-    <h3>Data Integrity</h3>
-    <ul>
-      <li>Real-time calculation validation</li>
-      <li>Automatic backup recovery for corrupted databases</li>
-      <li>Audit trail for all dose entries</li>
-      <li>Precision preservation (intended vs actual doses)</li>
-    </ul>
-
-    <h2>💡 Pro Tips</h2>
+    <h3>Backup & Data Management</h3>
     <div class="feature-grid">
       <div class="feature-card">
-        <h4>Combo Vials</h4>
-        <p>Create combo vials to track multiple peptides in one injection. The app automatically splits doses for individual analysis.</p>
+        <h4>Export Options</h4>
+        <p>Export complete dose history, weight data, or peptide inventory as CSV files for external analysis or backup.</p>
       </div>
       <div class="feature-card">
-        <h4>Color Coding</h4>
-        <p>Assign colors to peptides for quick visual identification throughout the app.</p>
+        <h4>Import Capabilities</h4>
+        <p>Import previous data from CSV files when switching devices or restoring from backup.</p>
       </div>
       <div class="feature-card">
-        <h4>Batch Tracking</h4>
-        <p>Record batch numbers and brands for quality control and supplier tracking.</p>
+        <h4>Selective Deletion</h4>
+        <p>Clear weight data independently or delete individual dose entries via swipe actions in History tab.</p>
       </div>
       <div class="feature-card">
         <h4>Regular Backups</h4>
