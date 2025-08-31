@@ -7,7 +7,7 @@
     <link rel="canonical" href="https://peptidejournal.net/terms-of-use.html" />
     <meta name="description" content="Terms of Use for PeptideJournal app. Legal terms and conditions for using our peptide tracking application." />
     <meta name="robots" content="index,follow" />
-    <meta name="theme-color" content="#0ea64b" />
+    <meta name="theme-color" content="#ffffff" />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
@@ -410,14 +410,41 @@
     </footer>
   <script>
     (function () {
+      function setThemeClassFromQuery() {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var t = (params.get('theme') || '').toLowerCase();
+          if (t !== 'light') {
+            document.documentElement.classList.add('theme-dark');
+          } else {
+            document.documentElement.classList.remove('theme-dark');
+          }
+        } catch (e) {}
+      }
+
+      function updateThemeColor() {
+        var isDark = document.documentElement.classList.contains('theme-dark') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var color = isDark ? '#0d1117' : '#ffffff';
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute('name', 'theme-color');
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', color);
+      }
+
+      setThemeClassFromQuery();
+      updateThemeColor();
+
       try {
-        var params = new URLSearchParams(window.location.search);
-        var t = (params.get('theme') || '').toLowerCase();
-        // Default to dark unless explicitly set to light
-        if (t !== 'light') {
-          document.documentElement.classList.add('theme-dark');
-        } else {
-          document.documentElement.classList.remove('theme-dark');
+        if (window.matchMedia) {
+          var mq = window.matchMedia('(prefers-color-scheme: dark)');
+          if (mq.addEventListener) {
+            mq.addEventListener('change', updateThemeColor);
+          } else if (mq.addListener) {
+            mq.addListener(updateThemeColor);
+          }
         }
       } catch (e) {}
     })();
