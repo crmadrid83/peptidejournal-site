@@ -4,6 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Thanks — PeptideJournal Support</title>
+  <meta name="theme-color" content="#ffffff" />
   <style>
     :root { color-scheme: light dark; }
     body { font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 0; }
@@ -19,6 +20,10 @@
     .actions a { display: inline-block; background: #007AFF; color: white; padding: 12px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; margin: 0 8px; }
     .actions a.secondary { background: #f0f0f0; color: #333; }
     footer { border-top: 1px solid #ddd; padding: 16px; text-align: center; color: #666; }
+    /* Very small screens: allow nav to wrap to prevent overflow */
+    @media (max-width: 380px) {
+      .links { flex-wrap: wrap; row-gap: 4px; }
+    }
   </style>
 </head>
 <body>
@@ -47,5 +52,28 @@
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "94c9950a03c84eb2b6abfdce9a67edee"}'></script>
   <!-- End Cloudflare Web Analytics -->
+  <script>
+    (function () {
+      function updateThemeColor() {
+        var isDark = (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var color = isDark ? '#0d1117' : '#ffffff';
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute('name', 'theme-color');
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', color);
+      }
+      updateThemeColor();
+      try {
+        if (window.matchMedia) {
+          var mq = window.matchMedia('(prefers-color-scheme: dark)');
+          if (mq.addEventListener) mq.addEventListener('change', updateThemeColor);
+          else if (mq.addListener) mq.addListener(updateThemeColor);
+        }
+      } catch (e) {}
+    })();
+  </script>
 </body>
 </html>
