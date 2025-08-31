@@ -61,6 +61,19 @@
     }
     .back-link:hover { color: #90CAF9; }
     
+    /* Mobile responsive navigation */
+    @media (max-width: 768px) {
+      .links { gap: 8px; font-size: 14px; }
+      .nav { padding: 0 8px; }
+    }
+    
+    @media (max-width: 480px) {
+      .links { gap: 6px; font-size: 13px; }
+      .links a { padding: 4px 2px; }
+      .nav { gap: 8px; }
+      .brand { font-size: 16px; }
+    }
+    
     .container { 
       max-width: 900px; 
       margin: 0 auto; 

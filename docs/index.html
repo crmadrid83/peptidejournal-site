@@ -105,9 +105,17 @@
       .hero p { font-size: 1.1rem; }
       .features-grid { grid-template-columns: 1fr; }
       .footer-links { flex-direction: column; gap: 16px; }
-      .links { gap: 16px; }
+      .links { gap: 8px; font-size: 14px; }
       .store-badge img { height: 48px; }
       .feature-icon { width: 80px; height: 80px; font-size: 32px; }
+      .nav { padding: 0 8px; }
+    }
+    
+    @media (max-width: 480px) {
+      .links { gap: 6px; font-size: 13px; }
+      .links a { padding: 4px 2px; }
+      .nav { gap: 8px; }
+      .brand { font-size: 16px; }
     }
 
     /* Optional professional dark theme (activated with ?theme=dark) */

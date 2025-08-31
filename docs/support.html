@@ -47,6 +47,20 @@
     button:hover { filter: brightness(0.95); }
     .note { color: #666; font-size: 14px; }
     footer { border-top: 1px solid #ddd; padding: 16px; text-align: center; color: #666; }
+    
+    /* Mobile responsive navigation */
+    @media (max-width: 768px) {
+      .links { gap: 8px; font-size: 14px; }
+      .nav { padding: 0 8px; }
+    }
+    
+    @media (max-width: 480px) {
+      .links { gap: 6px; font-size: 13px; }
+      .links a { padding: 4px 2px; }
+      .nav { gap: 8px; }
+      .brand { font-size: 16px; }
+    }
+    
     /* Dark theme to match homepage */
     .theme-dark body { background: #0d1117; color: #c9d1d9; }
     .theme-dark header { background: rgba(13,17,23,0.9); border-bottom-color: #30363d; }
