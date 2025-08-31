@@ -7,7 +7,7 @@
   <meta name="description" content="Personal peptide tracking and logging app for iOS. Secure, private data management for personal use only. Not for medical advice." />
   <link rel="canonical" href="https://peptidejournal.net/" />
   <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#0ea64b" />
+  <meta name="theme-color" id="theme-color" content="#ffffff" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -420,6 +420,11 @@
           document.documentElement.classList.add('theme-dark');
         } else {
           document.documentElement.classList.remove('theme-dark');
+        }
+        // Match the browser UI color (iOS Safari status bar, Android address bar)
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (meta) {
+          meta.setAttribute('content', t !== 'light' ? '#0d1117' : '#ffffff');
         }
       } catch (e) {}
     })();
