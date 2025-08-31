@@ -7,14 +7,14 @@
   <link rel="canonical" href="https://peptidejournal.net/support.html" />
   <meta name="description" content="Get support for PeptideJournal. Contact us with questions, bug reports, or feedback." />
   <meta name="robots" content="index,follow" />
-  <meta name="theme-color" content="#0ea64b" />
+  <meta name="theme-color" content="#ffffff" />
 
   <!-- Icons -->
   <link rel="icon" href="favicon-32x32.png?v=2" sizes="32x32" type="image/png" />
   <link rel="icon" type="image/x-icon" href="favicon.ico?v=4" />
   <link rel="shortcut icon" href="favicon.ico?v=4" type="image/x-icon" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4" />
-  <link rel="manifest" href="site.webmanifest?v=2" />
+  <link rel="manifest" href="site.webmanifest?v=4" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="website" />
@@ -59,6 +59,10 @@
       .links a { padding: 4px 2px; }
       .nav { gap: 8px; }
       .brand { font-size: 16px; }
+    }
+    /* Very small screens: allow nav to wrap to prevent overflow */
+    @media (max-width: 380px) {
+      .links { flex-wrap: wrap; row-gap: 4px; }
     }
     
     /* Dark theme to match homepage */
@@ -129,13 +133,41 @@
   </footer>
   <script>
     (function () {
+      function setThemeClassFromQuery() {
+        try {
+          var params = new URLSearchParams(window.location.search);
+          var t = (params.get('theme') || '').toLowerCase();
+          if (t !== 'light') {
+            document.documentElement.classList.add('theme-dark');
+          } else {
+            document.documentElement.classList.remove('theme-dark');
+          }
+        } catch (e) {}
+      }
+
+      function updateThemeColor() {
+        var isDark = document.documentElement.classList.contains('theme-dark') || (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        var color = isDark ? '#0d1117' : '#ffffff';
+        var meta = document.querySelector('meta[name="theme-color"]');
+        if (!meta) {
+          meta = document.createElement('meta');
+          meta.setAttribute('name', 'theme-color');
+          document.head.appendChild(meta);
+        }
+        meta.setAttribute('content', color);
+      }
+
+      setThemeClassFromQuery();
+      updateThemeColor();
+
       try {
-        var params = new URLSearchParams(window.location.search);
-        var t = (params.get('theme') || '').toLowerCase();
-        if (t !== 'light') {
-          document.documentElement.classList.add('theme-dark');
-        } else {
-          document.documentElement.classList.remove('theme-dark');
+        if (window.matchMedia) {
+          var mq = window.matchMedia('(prefers-color-scheme: dark)');
+          if (mq.addEventListener) {
+            mq.addEventListener('change', updateThemeColor);
+          } else if (mq.addListener) {
+            mq.addListener(updateThemeColor);
+          }
         }
       } catch (e) {}
     })();
