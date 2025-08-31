@@ -29,6 +29,9 @@
   <link rel="shortcut icon" href="favicon.ico?v=4" type="image/x-icon" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4" />
   <link rel="manifest" href="site.webmanifest?v=4" />
+  
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
   <style>
     :root { color-scheme: light dark; }
     * { box-sizing: border-box; }
@@ -239,32 +242,32 @@
       <h2>Built for Personal Use</h2>
       <div class="features-grid">
         <div class="feature">
-          <div class="feature-icon">📊</div>
+          <div class="feature-icon"><i data-feather="trending-up"></i></div>
           <h3>Precise Tracking</h3>
           <p>Personal logging calculations, inventory management, and detailed analytics to support your personal tracking needs.</p>
         </div>
         <div class="feature">
-          <div class="feature-icon">🔒</div>
+          <div class="feature-icon"><i data-feather="shield"></i></div>
           <h3>Complete Privacy</h3>
           <p>All data stays on your device. No cloud storage, no tracking, no external servers. Your personal data remains confidential.</p>
         </div>
         <div class="feature">
-          <div class="feature-icon">📱</div>
+          <div class="feature-icon"><i data-feather="smartphone"></i></div>
           <h3>Native iOS Design</h3>
           <p>Built specifically for iOS with SwiftData integration, offering seamless performance and familiar interface patterns.</p>
         </div>
         <div class="feature">
-          <div class="feature-icon">📅</div>
+          <div class="feature-icon"><i data-feather="calendar"></i></div>
           <h3>Smart Scheduling</h3>
           <p>Integrated calendar views, reminder systems, and historical tracking to maintain consistent personal logging.</p>
         </div>
         <div class="feature">
-          <div class="feature-icon">💾</div>
+          <div class="feature-icon"><i data-feather="hard-drive"></i></div>
           <h3>Secure Backups</h3>
           <p>Local backup functionality for data export and import. Your data is protected and stays on your device.</p>
         </div>
         <div class="feature">
-          <div class="feature-icon">🧮</div>
+          <div class="feature-icon"><i data-feather="calculator"></i></div>
           <h3>Personal Calculator</h3>
           <p>Personal logging calculations with support for multiple peptides, concentrations, and tracking methods.</p>
         </div>
@@ -418,5 +421,9 @@
   <script defer src="https://static.cloudflareinsights.com/beacon.min.js"
           data-cf-beacon='{"token": "94c9950a03c84eb2b6abfdce9a67edee"}'></script>
   <!-- End Cloudflare Web Analytics -->
-</body>
+  <script>
+    // Initialize Feather icons
+    feather.replace();
+  </script>
+  </body>
 </html>
