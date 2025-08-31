@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>User Guide - PeptideJournal</title>
+  <meta name="description" content="Complete user guide for PeptideJournal - Learn how to track your peptide routine safely and effectively." />
+  <link rel="canonical" href="https://peptidejournal.net/user-guide.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0ea64b" />
+
+  <!-- Icons -->
+  <link rel="icon" type="image/x-icon" href="https://peptidejournal.net/favicon.ico?v=4" />
+  <link rel="shortcut icon" href="https://peptidejournal.net/favicon.ico?v=4" type="image/x-icon" />
+  <link rel="apple-touch-icon" sizes="180x180" href="https://peptidejournal.net/apple-touch-icon.png?v=4" />
+  
+  <style>
+    :root { color-scheme: light dark; }
+    * { box-sizing: border-box; }
+    body { 
+      font-family: -apple-system, system-ui, Segoe UI, Roboto, Helvetica, Arial, sans-serif; 
+      margin: 0; padding: 0; line-height: 1.6; 
+      background: #f8f9fa;
+    }
+    
+    header { 
+      padding: 12px 16px; 
+      border-bottom: 1px solid #ddd; 
+      background: rgba(255,255,255,0.95); 
+      backdrop-filter: blur(10px); 
+      position: sticky; 
+      top: 0; 
+      z-index: 100; 
+    }
+    .nav { 
+      display: flex; 
+      align-items: center; 
+      justify-content: space-between; 
+      max-width: 1200px; 
+      margin: 0 auto; 
+      gap: 12px; 
+    }
+    .brand { 
+      font-weight: 800; 
+      letter-spacing: 0.2px; 
+      color: #007AFF; 
+      display: flex; 
+      align-items: center; 
+      gap: 8px; 
+      text-decoration: none;
+    }
+    .brand-logo { width: 24px; height: 24px; border-radius: 6px; }
+    .back-link { 
+      color: #007AFF; 
+      text-decoration: none; 
+      font-weight: 600; 
+      transition: color 0.2s; 
+    }
+    .back-link:hover { color: #0051D5; }
+    
+    .container { 
+      max-width: 900px; 
+      margin: 0 auto; 
+      padding: 40px 20px; 
+      background: white; 
+      border-radius: 12px; 
+      margin-top: 20px; 
+      margin-bottom: 40px; 
+      box-shadow: 0 4px 20px rgba(0,0,0,0.08); 
+    }
+    
+    h1 { 
+      font-size: 2.5rem; 
+      font-weight: 800; 
+      margin: 0 0 16px; 
+      color: #1a1a1a; 
+      text-align: center;
+    }
+    .subtitle { 
+      text-align: center; 
+      font-size: 1.1rem; 
+      color: #666; 
+      margin: 0 0 40px; 
+    }
+    
+    h2 { 
+      font-size: 1.8rem; 
+      font-weight: 700; 
+      margin: 40px 0 16px; 
+      color: #007AFF; 
+      border-bottom: 2px solid #007AFF; 
+      padding-bottom: 8px; 
+    }
+    h3 { 
+      font-size: 1.3rem; 
+      font-weight: 600; 
+      margin: 24px 0 12px; 
+      color: #1a1a1a; 
+    }
+    
+    p { 
+      margin: 0 0 16px; 
+      color: #333; 
+    }
+    
+    .feature-grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 24px; 
+      margin: 24px 0; 
+    }
+    .feature-card { 
+      background: #f8f9fa; 
+      padding: 20px; 
+      border-radius: 12px; 
+      border-left: 4px solid #007AFF; 
+    }
+    .feature-card h4 { 
+      font-size: 1.1rem; 
+      font-weight: 700; 
+      margin: 0 0 8px; 
+      color: #007AFF; 
+    }
+    .feature-card p { 
+      margin: 0; 
+      font-size: 0.95rem; 
+      color: #555; 
+    }
+    
+    .code-block { 
+      background: #f4f4f4; 
+      border: 1px solid #ddd; 
+      border-radius: 8px; 
+      padding: 16px; 
+      font-family: 'SF Mono', Monaco, monospace; 
+      font-size: 0.9rem; 
+      margin: 16px 0; 
+      overflow-x: auto; 
+    }
+    
+    .warning { 
+      background: #fff3cd; 
+      border: 1px solid #ffeaa7; 
+      border-radius: 8px; 
+      padding: 16px; 
+      margin: 20px 0; 
+      border-left: 4px solid #f39c12; 
+    }
+    .warning h4 { 
+      margin: 0 0 8px; 
+      color: #856404; 
+      font-weight: 700; 
+    }
+    .warning p { 
+      margin: 0; 
+      color: #856404; 
+    }
+    
+    .tabs { 
+      display: flex; 
+      background: #f1f3f4; 
+      border-radius: 8px; 
+      padding: 4px; 
+      margin: 20px 0; 
+    }
+    .tab { 
+      flex: 1; 
+      text-align: center; 
+      padding: 12px; 
+      border-radius: 6px; 
+      font-weight: 600; 
+      color: #666; 
+      background: transparent; 
+      transition: all 0.2s; 
+    }
+    .tab.active { 
+      background: white; 
+      color: #007AFF; 
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1); 
+    }
+    
+    ul { 
+      padding-left: 20px; 
+    }
+    li { 
+      margin: 8px 0; 
+      color: #333; 
+    }
+    
+    .highlight { 
+      background: linear-gradient(120deg, #a8e6cf 0%, #dcedc8 100%); 
+      padding: 2px 6px; 
+      border-radius: 4px; 
+      font-weight: 600; 
+    }
+    
+    footer { 
+      border-top: 1px solid #ddd; 
+      padding: 40px 16px; 
+      text-align: center; 
+      color: #666; 
+      background: #f8f9fa; 
+      margin-top: 40px; 
+    }
+    .footer-content { 
+      max-width: 1200px; 
+      margin: 0 auto; 
+    }
+    .footer-links { 
+      display: flex; 
+      justify-content: center; 
+      gap: 32px; 
+      margin: 0 0 24px; 
+    }
+    .footer-links a { 
+      color: #666; 
+      text-decoration: none; 
+      font-weight: 500; 
+    }
+    .footer-links a:hover { 
+      color: #007AFF; 
+    }
+    
+    @media (max-width: 768px) {
+      .container { 
+        margin: 10px; 
+        padding: 24px 16px; 
+      }
+      h1 { 
+        font-size: 2rem; 
+      }
+      .feature-grid { 
+        grid-template-columns: 1fr; 
+      }
+      .footer-links { 
+        flex-direction: column; 
+        gap: 16px; 
+      }
+    }
+  </style>
+  
+  <script>
+    function scrollToSection(sectionId) {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ 
+          behavior: 'smooth',
+          block: 'start'
+        });
+        
+        // Update active tab
+        document.querySelectorAll('.tab').forEach(tab => {
+          tab.classList.remove('active');
+        });
+        event.target.classList.add('active');
+      }
+    }
+  </script>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <a href="https://peptidejournal.net/" class="brand">
+        <img src="app-logo.jpg" alt="PeptideJournal" class="brand-logo">
+        PeptideJournal
+      </a>
+      <a href="https://peptidejournal.net/" class="back-link">← Back to Home</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>PeptideJournal User Guide</h1>
+    <p class="subtitle">Complete guide to tracking your peptide routine safely and effectively</p>
+
+    <div class="warning">
+      <h4>⚠️ Important Medical Disclaimer</h4>
+      <p>PeptideJournal is a personal tracking and logging tool only. It does not provide medical advice, diagnosis, or treatment recommendations. Always consult with qualified healthcare professionals before making any medical decisions. This app is for personal record-keeping purposes only.</p>
+    </div>
+
+    <h2>🏠 App Overview</h2>
+    <p>PeptideJournal helps you track your peptide routine across five main areas:</p>
+    
+    <div class="tabs">
+      <div class="tab active" onclick="scrollToSection('inventory')">Inventory</div>
+      <div class="tab" onclick="scrollToSection('calculator')">Calculator</div>
+      <div class="tab" onclick="scrollToSection('history')">History</div>
+      <div class="tab" onclick="scrollToSection('calendar')">Calendar</div>
+      <div class="tab" onclick="scrollToSection('analytics')">Analytics</div>
+    </div>
+
+    <h2 id="inventory">📦 Inventory Management</h2>
+    <p>Your central hub for managing peptide vials and tracking supply levels.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Adding Peptides</h4>
+        <p>Create single peptides or combo vials with multiple compounds. Set concentrations, volumes, batch numbers, and visual colors.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Smart Tracking</h4>
+        <p>Automatically calculates remaining doses and predicts when you'll run out based on your usage patterns.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Swipe Actions</h4>
+        <p>Refill (green), Archive (blue), Delete (red), or Repeat Last Dose (green) with simple swipe gestures.</p>
+      </div>
+    </div>
+
+    <h2 id="calculator">🧮 Smart Calculator</h2>
+    <p>Precision dose calculations with visual syringe interface for accurate measurements.</p>
+
+    <h3>How Calculations Work</h3>
+    <div class="code-block">
+Volume (mL) = Intended Dose (mg) ÷ Concentration (mg/mL)
+Syringe Units = Volume × Syringe Scale Factor
+    </div>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Dual Input Methods</h4>
+        <p>Enter doses in mg or mcg. App automatically converts and calculates exact volume needed.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Syringe Types</h4>
+        <p>Supports insulin syringes (shows units) and TB syringes (shows mL) with precise markings.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Memory Features</h4>
+        <p>Remembers your last dose, syringe settings, and injection route for each peptide.</p>
+      </div>
+    </div>
+
+    <h2 id="history">📝 Dose Logging</h2>
+    <p>Comprehensive tracking of every injection with detailed metadata.</p>
+
+    <h3>What Gets Recorded</h3>
+    <ul>
+      <li><span class="highlight">Date & Time</span> - Automatic timestamp</li>
+      <li><span class="highlight">Peptide & Dose</span> - Name and intended amount</li>
+      <li><span class="highlight">Volume & Route</span> - Actual injection details</li>
+      <li><span class="highlight">Side Effects</span> - Predefined options plus custom entries</li>
+      <li><span class="highlight">Benefits</span> - Positive effects tracking</li>
+      <li><span class="highlight">Notes</span> - Injection sites and personal observations</li>
+    </ul>
+
+    <h2 id="analytics">📊 Analytics & Insights</h2>
+    <p>Transform your data into actionable insights about your peptide routine.</p>
+
+    <h3>Core Statistics</h3>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Usage Tracking</h4>
+        <p>Active peptides, total injection sessions, and comprehensive dose history.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Effectiveness Score</h4>
+        <p>Algorithm ranks peptides: (Benefits per dose × 2) - Side effects per dose</p>
+      </div>
+      <div class="feature-card">
+        <h4>Consistency Metrics</h4>
+        <p>Dosing streaks, adherence rates, and achievement badges for motivation.</p>
+      </div>
+    </div>
+
+    <h3>Visual Data Analysis</h3>
+    <ul>
+      <li><strong>Peptide Usage Charts</strong> - Pie charts showing your most-used compounds</li>
+      <li><strong>Side Effect Trends</strong> - Weekly bar charts tracking adverse effects</li>
+      <li><strong>Benefits Analysis</strong> - Positive effects breakdown and frequency</li>
+      <li><strong>Weight Integration</strong> - HealthKit sync for weight trend tracking</li>
+    </ul>
+
+    <h3>Smart Inventory Alerts</h3>
+    <div class="code-block">
+Days Until Reorder = Remaining Doses ÷ (30-Day Usage ÷ 30)
+    </div>
+    <p>Color-coded alerts: <span style="color: red;">Red (order now)</span>, <span style="color: orange;">Orange (1-7 days)</span>, <span style="color: #f39c12;">Yellow (8-14 days)</span>, <span style="color: green;">Green (all good)</span></p>
+
+    <h2 id="calendar">⏰ Reminder System</h2>
+    <p>Never miss a dose with intelligent scheduling and notifications.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Custom Schedules</h4>
+        <p>Set unique timing for each peptide - daily, every other day, weekly, or custom intervals.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Smart Notifications</h4>
+        <p>Contextual alerts with peptide name, dose amount, and remaining supply information.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Sound Options</h4>
+        <p>Choose from Default, Gentle, Urgent, Critical, or Silent notification sounds.</p>
+      </div>
+    </div>
+
+    <h2>🔒 Privacy & Data</h2>
+    <p>Your health data stays secure and private with local storage and optional integrations.</p>
+
+    <h3>Data Storage</h3>
+    <ul>
+      <li><strong>Local Database</strong> - All data stored on your device using SwiftData</li>
+      <li><strong>No Cloud Sync</strong> - Data never leaves your device without your permission</li>
+      <li><strong>HealthKit Integration</strong> - Optional weight sync (user controlled)</li>
+      <li><strong>Export/Import</strong> - CSV backup for data portability</li>
+    </ul>
+
+    <h3>Data Integrity</h3>
+    <ul>
+      <li>Real-time calculation validation</li>
+      <li>Automatic backup recovery for corrupted databases</li>
+      <li>Audit trail for all dose entries</li>
+      <li>Precision preservation (intended vs actual doses)</li>
+    </ul>
+
+    <h2>💡 Pro Tips</h2>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <h4>Combo Vials</h4>
+        <p>Create combo vials to track multiple peptides in one injection. The app automatically splits doses for individual analysis.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Color Coding</h4>
+        <p>Assign colors to peptides for quick visual identification throughout the app.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Batch Tracking</h4>
+        <p>Record batch numbers and brands for quality control and supplier tracking.</p>
+      </div>
+      <div class="feature-card">
+        <h4>Regular Backups</h4>
+        <p>Export your data regularly via CSV to maintain backups of your complete history.</p>
+      </div>
+    </div>
+
+    <h2>📱 Getting Started</h2>
+    <ol>
+      <li><strong>Download</strong> PeptideJournal from the App Store</li>
+      <li><strong>Add Your First Peptide</strong> in the Inventory tab</li>
+      <li><strong>Calculate Your Dose</strong> using the Calculator tab</li>
+      <li><strong>Log Your Injection</strong> with effects and notes</li>
+      <li><strong>Track Progress</strong> in Analytics and Calendar views</li>
+      <li><strong>Set Reminders</strong> for consistent dosing schedules</li>
+    </ol>
+
+    <div class="warning">
+      <h4>🎯 Remember</h4>
+      <p>PeptideJournal is designed for personal tracking and record-keeping. Always consult healthcare professionals for medical decisions and follow proper injection safety protocols.</p>
+    </div>
+  </div>
+
+  <footer>
+    <div class="footer-content">
+      <div class="footer-links">
+        <a href="https://peptidejournal.net/">Home</a>
+        <a href="https://peptidejournal.net/support.html">Support</a>
+        <a href="https://peptidejournal.net/privacy-policy.html">Privacy Policy</a>
+      </div>
+      <p>&copy; 2025 PeptideJournal. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
