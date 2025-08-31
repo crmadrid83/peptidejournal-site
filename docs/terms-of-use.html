@@ -28,7 +28,7 @@
     <link rel="icon" type="image/x-icon" href="favicon.ico?v=4" />
     <link rel="shortcut icon" href="favicon.ico?v=4" type="image/x-icon" />
     <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=4" />
-    <link rel="manifest" href="site.webmanifest?v=2" />
+    <link rel="manifest" href="site.webmanifest?v=4" />
     
     <style>
         :root { color-scheme: light dark; }
@@ -181,7 +181,10 @@
         @media (max-width: 480px) {
             .links { gap: 6px; font-size: 13px; }
             .links a { padding: 4px 2px; }
-            .nav { gap: 8px; }
+            .nav { gap: 8px; flex-wrap: wrap; }
+            /* Allow links to wrap to the next line while keeping each link intact */
+            .links { flex-wrap: wrap; row-gap: 4px; }
+            .links a { white-space: nowrap; }
             .brand { font-size: 16px; }
         }
 
