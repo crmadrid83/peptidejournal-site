@@ -180,13 +180,13 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-image: url('background-logo.svg');
+      background-image: url('Peptide vial.jpg');
       background-size: 120px 120px;
       background-repeat: repeat;
-      background-position: 0 0;
       opacity: 0.03;
-      z-index: -1;
       animation: float 20s ease-in-out infinite;
+      pointer-events: none;
+      z-index: 0;
     }
     
     @keyframes float {
@@ -210,7 +210,7 @@
     /* Dark theme adjustments */
     .theme-dark .bg-pattern-enabled::before {
       opacity: 0.08;
-      filter: brightness(1.5);
+      filter: brightness(0.7);
     }
     
     .theme-dark .bg-pattern-enabled::after {
@@ -232,7 +232,7 @@
   <header>
     <div class="nav">
       <div class="brand">
-        <img src="Peptide vial.jpg" alt="PeptideJournal" class="brand-logo">
+        <img src="app-logo.jpg" alt="PeptideJournal" class="brand-logo">
         PeptideJournal
       </div>
       <nav class="links">
@@ -248,7 +248,7 @@
   <section class="hero bg-pattern-enabled">
     <div class="hero-content">
       <div class="app-logo">
-        <img src="Peptide vial.jpg" alt="PeptideJournal App Icon" width="120" height="120">
+        <img src="app-logo.jpg" alt="PeptideJournal App Icon" width="120" height="120">
       </div>
       <h1>Personal Tracking Made Simple</h1>
       <p>Personal peptide tracking and logging designed for individuals who value privacy, precision, and simplicity. PeptideJournal handles everything from single-vial calculations to advanced multi-peptide blends, giving you flexibility for any protocol. For personal use only - not medical advice.</p>
