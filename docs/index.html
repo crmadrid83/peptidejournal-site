@@ -447,9 +447,15 @@
     });
     
     // Device toggle functionality - Fixed version
-    document.addEventListener('DOMContentLoaded', function() {
+    function initializeDeviceToggle() {
       const deviceTabs = document.querySelectorAll('.device-tab');
       const screenshotsContainer = document.getElementById('screenshots-container');
+      
+      if (!deviceTabs.length || !screenshotsContainer) {
+        console.log('Toggle elements not found, retrying...');
+        setTimeout(initializeDeviceToggle, 100);
+        return;
+      }
       
       const screenshotMappings = {
         'iphone': {
@@ -542,7 +548,15 @@
         updateScreenshots('iphone');
         console.log('Screenshot toggle initialized');
       }
-    });
+    }
+    
+    // Initialize on DOM ready and as fallback
+    document.addEventListener('DOMContentLoaded', initializeDeviceToggle);
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initializeDeviceToggle);
+    } else {
+      initializeDeviceToggle();
+    }
   </script>
   <script>
     (function () {
