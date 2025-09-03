@@ -68,10 +68,17 @@
     }
     
     @media (max-width: 480px) {
-      .links { gap: 6px; font-size: 13px; }
-      .links a { padding: 4px 2px; }
-      .nav { gap: 8px; }
-      .brand { font-size: 16px; }
+      .links { gap: 4px; font-size: 12px; flex-wrap: wrap; }
+      .links a { padding: 2px 4px; white-space: nowrap; }
+      .nav { gap: 6px; flex-wrap: wrap; }
+      .brand { font-size: 15px; }
+    }
+    
+    @media (max-width: 420px) {
+      .links { gap: 2px; font-size: 11px; }
+      .links a { padding: 2px 3px; }
+      .nav { gap: 4px; }
+      .brand { font-size: 14px; }
     }
     
     .container { 
