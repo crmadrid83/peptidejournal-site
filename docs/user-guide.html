@@ -232,6 +232,73 @@
       text-shadow: 0 1px 2px rgba(0,0,0,0.3); 
     }
     
+    /* Device toggle styles */
+    .device-tabs {
+      display: flex;
+      background: linear-gradient(145deg, #3a3a3a 0%, #2e2e2e 100%);
+      border-radius: 8px;
+      padding: 4px;
+      margin: 20px 0;
+      border: 1px solid #4a4a4a;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .device-tab {
+      flex: 1;
+      text-align: center;
+      padding: 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      color: #b0b0b0;
+      background: transparent;
+      border: none;
+      transition: all 0.2s;
+      cursor: pointer;
+      font-size: inherit;
+      font-family: inherit;
+    }
+    .device-tab:hover {
+      color: #d0d0d0;
+    }
+    .device-tab.is-active {
+      background: linear-gradient(145deg, #64B5F6 0%, #42A5F5 100%);
+      color: #ffffff;
+      font-weight: bold;
+      text-decoration: underline;
+      box-shadow: 0 4px 12px rgba(100,181,246,0.4), 0 2px 4px rgba(0,0,0,0.3);
+      text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    .device-panel[hidden] {
+      display: none !important;
+    }
+    .screenshots-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 20px 0;
+    }
+    .screenshot-item {
+      text-align: center;
+    }
+    .screenshot-item img {
+      width: 100%;
+      max-width: 250px;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+      border: 1px solid #404040;
+    }
+    .screenshot-item h4 {
+      margin: 12px 0 4px;
+      color: #64B5F6;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+    .screenshot-item p {
+      margin: 0;
+      color: #b0b0b0;
+      font-size: 0.9rem;
+    }
+    
     footer { 
       border-top: 1px solid #404040; 
       padding: 40px 16px; 
@@ -304,6 +371,42 @@
         event.target.classList.add('active');
       }
     }
+    
+    // Device toggle functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const deviceTabs = document.querySelectorAll('.device-tab');
+      const devicePanels = document.querySelectorAll('.device-panel');
+      
+      function switchDevice(targetDevice) {
+        // Update tabs
+        deviceTabs.forEach(tab => {
+          const isActive = tab.dataset.device === targetDevice;
+          tab.classList.toggle('is-active', isActive);
+          tab.setAttribute('aria-selected', isActive.toString());
+        });
+        
+        // Update panels
+        devicePanels.forEach(panel => {
+          const shouldShow = panel.id === targetDevice + '-panel';
+          panel.hidden = !shouldShow;
+        });
+      }
+      
+      // Add click listeners
+      deviceTabs.forEach(tab => {
+        tab.addEventListener('click', function() {
+          switchDevice(this.dataset.device);
+        });
+        
+        // Keyboard accessibility
+        tab.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            switchDevice(this.dataset.device);
+          }
+        });
+      });
+    });
   </script>
 </head>
 <body>
@@ -409,6 +512,70 @@ Syringe Units = Volume × Syringe Scale Factor
       <li><span class="highlight">Notes & Sites</span> - Injection locations and personal observations</li>
     </ul>
 
+    <h2>📱 App Screenshots</h2>
+    <p>See PeptideJournal in action across different device types:</p>
+    
+    <div class="device-tabs">
+      <button class="device-tab is-active" role="tab" aria-selected="true" data-device="iphone">iPhone</button>
+      <button class="device-tab" role="tab" aria-selected="false" data-device="ipad">iPad</button>
+    </div>
+    
+    <div id="iphone-panel" class="device-panel">
+      <div class="screenshots-grid">
+        <div class="screenshot-item">
+          <img src="screenshot-calculator-dose.png" alt="Calculator - Dose Entry">
+          <h4>Calculator</h4>
+          <p>Precise dose calculations with visual syringe interface</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-inventory.png" alt="Inventory Management">
+          <h4>Inventory</h4>
+          <p>Track peptide vials and remaining doses</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-history.png" alt="Dose History">
+          <h4>History</h4>
+          <p>Complete chronological record of all injections</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-analytics-usage.png" alt="Analytics Overview">
+          <h4>Analytics</h4>
+          <p>Transform your data into actionable insights</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-analytics-side-effects.png" alt="Side Effects Tracking">
+          <h4>Side Effects</h4>
+          <p>Monitor adverse effects and trends</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-analytics-benefits-dark.png" alt="Benefits Analysis">
+          <h4>Benefits</h4>
+          <p>Track positive effects and outcomes</p>
+        </div>
+      </div>
+    </div>
+    
+    <div id="ipad-panel" class="device-panel" hidden>
+      <div class="screenshots-grid">
+        <div class="screenshot-item">
+          <img src="screenshot-calculator-semaglutide.png" alt="iPad Calculator View">
+          <h4>Calculator (iPad)</h4>
+          <p>Enhanced calculator interface optimized for larger screens</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-calculator-result.png" alt="iPad Calculation Results">
+          <h4>Results (iPad)</h4>
+          <p>Detailed calculation results with improved visibility</p>
+        </div>
+        <div class="screenshot-item">
+          <img src="screenshot-analytics-benefits-light.png" alt="iPad Analytics Light Mode">
+          <h4>Analytics (iPad)</h4>
+          <p>Comprehensive analytics with adaptive navigation</p>
+        </div>
+      </div>
+      <p style="text-align: center; color: #b0b0b0; margin-top: 20px;">iPad version features adaptive navigation with sidebar for improved usability on larger screens.</p>
+    </div>
+
     <h2 id="analytics">📊 Analytics & Insights</h2>
     <p>Transform your data into actionable insights about your peptide routine.</p>
 
@@ -461,7 +628,7 @@ Syringe Units = Volume × Syringe Scale Factor
     <p>Visual scheduling system with intelligent notifications to maintain consistent dosing routines.</p>
 
     <h3>Calendar Tab Features</h3>
-{{ ... }}
+    <div class="feature-grid">
       <div class="feature-card">
         <h4>Monthly View</h4>
         <p>See your entire month at a glance with dose indicators on each day. Quickly identify patterns and missed doses.</p>
