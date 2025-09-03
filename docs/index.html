@@ -83,8 +83,14 @@
     
     .screenshots { padding: 80px 16px; background: white; }
     .screenshots-content { max-width: 1200px; margin: 0 auto; text-align: center; }
-    .screenshots h2 { font-size: 2.5rem; font-weight: 700; margin: 0 0 24px; color: #1a1a1a; }
-    .screenshots p { font-size: 1.1rem; color: #666; margin: 0 0 60px; }
+    .screenshots h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 16px; color: #1a1a1a; }
+    .screenshots p { font-size: 1.2rem; color: #666; margin-bottom: 32px; max-width: 800px; margin-left: auto; margin-right: auto; }
+    
+    .device-toggle { display: flex; justify-content: center; gap: 8px; margin-bottom: 48px; }
+    .device-tab { background: #f5f5f7; border: none; padding: 12px 24px; border-radius: 20px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; }
+    .device-tab.active { background: #007AFF; color: white; }
+    .device-tab:hover:not(.active) { background: #e1e5e9; }
+    
     .screenshots-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 32px; max-width: 1400px; margin: 0 auto; }
     .screenshot-item { text-align: center; transition: transform 0.3s ease; }
     .screenshot-item:hover { transform: translateY(-8px); }
@@ -305,11 +311,17 @@
     </div>
   </section>
 
-  <section class="screenshots bg-pattern-enabled">
+  <section class="screenshots bg-pattern-enabled" id="screenshots">
     <div class="screenshots-content">
       <h2>See PeptideJournal in Action</h2>
       <p>Explore the intuitive interface designed specifically for personal peptide tracking and logging.</p>
-      <div class="screenshots-grid">
+      
+      <div class="device-toggle">
+        <button class="device-tab active" data-device="iphone">📱 iPhone</button>
+        <button class="device-tab" data-device="ipad">📟 iPad</button>
+      </div>
+      
+      <div class="screenshots-grid" id="screenshots-container">
         <div class="screenshot-item">
           <img src="screenshot-calculator-dose.png" alt="Personal tracking calculator with syringe visualization" class="screenshot-img">
           <div class="screenshot-caption">
@@ -418,6 +430,100 @@
       <p> 2025 PeptideJournal. For personal tracking use only. Not medical advice.</p>
     </div>
   </footer>
+  <script>
+    // Dark mode toggle
+    const toggleButton = document.getElementById('theme-toggle');
+    const body = document.body;
+    
+    // Check for saved theme preference or default to light mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    body.className = `theme-${currentTheme}`;
+    
+    toggleButton.addEventListener('click', () => {
+      const isLight = body.classList.contains('theme-light');
+      body.className = isLight ? 'theme-dark' : 'theme-light';
+      localStorage.setItem('theme', isLight ? 'dark' : 'light');
+    });
+    
+    // Device toggle functionality
+    const deviceTabs = document.querySelectorAll('.device-tab');
+    const screenshotsContainer = document.getElementById('screenshots-container');
+    
+    const screenshotMappings = {
+      'iphone': {
+        'screenshot-calculator-dose.png': 'Personal Logging Calculator',
+        'screenshot-calculator-semaglutide.png': 'Multi-Peptide Support',
+        'screenshot-inventory.png': 'Smart Inventory Management',
+        'screenshot-history.png': 'Complete Entry History',
+        'screenshot-analytics-overview.png': 'Analytics Overview',
+        'screenshot-analytics-usage.png': 'Usage Analytics',
+        'screenshot-analytics-side-effects.png': 'Side Effects Tracking',
+        'screenshot-analytics-benefits-dark.png': 'Benefits Analysis',
+        'screenshot-analytics-benefits-light.png': 'Detailed Benefits Breakdown',
+        'screenshot-calculator-result.png': 'Precision Results',
+        'screenshot-repeat-last-dose.png': 'Repeat Last Dose',
+        'screenshot-inventory-list.png': 'Inventory Overview'
+      },
+      'ipad': {
+        'ipad-calculator-dose.png': 'Personal Logging Calculator',
+        'ipad-calculator-semaglutide.png': 'Multi-Peptide Support',
+        'ipad-inventory.png': 'Smart Inventory Management',
+        'ipad-history.png': 'Dose History Details',
+        'ipad-analytics-usage.png': 'Top Performer Analysis',
+        'ipad-analytics-side-effects.png': 'Side Effects Tracking',
+        'ipad-analytics-benefits.png': 'Benefits Analysis',
+        'ipad-calculator-result.png': 'Precision Results',
+        'ipad-inventory-list.png': 'Inventory Overview',
+        'ipad-calendar.png': 'Calendar & Reminders'
+      }
+    };
+    
+    const descriptions = {
+      'Personal Logging Calculator': 'Personal tracking calculations with visual guide and weight logging integration',
+      'Multi-Peptide Support': 'Log entries for various peptides with different tracking types and concentrations',
+      'Smart Inventory Management': 'Track multiple peptides, remaining doses, and get low-stock alerts',
+      'Complete Entry History': 'Log every entry with timestamps, methods, and effects for comprehensive personal records',
+      'Analytics Overview': 'Complete analytics dashboard with top performer, stats, and data visualization options',
+      'Usage Analytics': 'Monitor logging patterns, consistency, and overall personal tracking progress',
+      'Side Effects Tracking': 'Detailed monitoring and visualization of any adverse reactions',
+      'Benefits Analysis': 'Comprehensive tracking of positive effects across multiple categories',
+      'Detailed Benefits Breakdown': 'Track workout recovery, sleep quality, mood improvements, and more',
+      'Precision Results': 'Accurate measurements with clear logging entries and volume tracking',
+      'Repeat Last Dose': 'Quickly log the same dose with volume, route, and stock reminder',
+      'Inventory Overview': 'See active peptides, doses remaining, and quick actions at a glance',
+      'Calendar & Reminders': 'Visual scheduling system with intelligent notifications',
+      'Dose History Details': 'Detailed dose information with administration details and effects tracking',
+      'Top Performer Analysis': 'Algorithm-based effectiveness ranking with detailed breakdown and scoring'
+    };
+    
+    function updateScreenshots(device) {
+      const screenshots = screenshotMappings[device];
+      let html = '';
+      
+      Object.entries(screenshots).forEach(([filename, title]) => {
+        const description = descriptions[title];
+        html += `
+          <div class="screenshot-item">
+            <img src="${filename}" alt="${title}" class="screenshot-img">
+            <div class="screenshot-caption">
+              <h4>${title}</h4>
+              <p>${description}</p>
+            </div>
+          </div>
+        `;
+      });
+      
+      screenshotsContainer.innerHTML = html;
+    }
+    
+    deviceTabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        deviceTabs.forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        updateScreenshots(tab.dataset.device);
+      });
+    });
+  </script>
   <script>
     (function () {
       try {
