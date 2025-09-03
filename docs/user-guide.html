@@ -455,9 +455,10 @@ Syringe Units = Volume × Syringe Scale Factor
 
     <h3>Smart Inventory Alerts</h3>
     <div class="code-block">
-Days Until Reorder = Remaining Doses ÷ (30-Day Usage ÷ 30)
+Daily Usage = Total Volume Used in Last 30 Days ÷ 30
+Days Until Reorder = Remaining Volume ÷ Daily Usage
     </div>
-    <p>Color-coded alerts: <span style="color: red;">Red (order now)</span>, <span style="color: orange;">Orange (1-7 days)</span>, <span style="color: #f39c12;">Yellow (8-14 days)</span>, <span style="color: green;">Green (all good)</span></p>
+    <p>Calculates based on your actual usage patterns over the last 30 days. Color-coded alerts: <span style="color: red;">Red (order now)</span>, <span style="color: orange;">Orange (1-7 days)</span>, <span style="color: #f39c12;">Yellow (8-14 days)</span>, <span style="color: green;">Green (all good)</span></p>
 
     <h2 id="calendar">📅 Calendar & Reminders</h2>
     <p>Visual scheduling system with intelligent notifications to maintain consistent dosing routines.</p>
