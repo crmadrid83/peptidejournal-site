@@ -446,38 +446,39 @@
       localStorage.setItem('theme', isLight ? 'dark' : 'light');
     });
     
-    // Device toggle functionality
-    const deviceTabs = document.querySelectorAll('.device-tab');
-    const screenshotsContainer = document.getElementById('screenshots-container');
-    
-    const screenshotMappings = {
-      'iphone': {
-        'screenshot-calculator-dose.png': 'Personal Logging Calculator',
-        'screenshot-calculator-semaglutide.png': 'Multi-Peptide Support',
-        'screenshot-inventory.png': 'Smart Inventory Management',
-        'screenshot-history.png': 'Complete Entry History',
-        'screenshot-analytics-overview.png': 'Analytics Overview',
-        'screenshot-analytics-usage.png': 'Usage Analytics',
-        'screenshot-analytics-side-effects.png': 'Side Effects Tracking',
-        'screenshot-analytics-benefits-dark.png': 'Benefits Analysis',
-        'screenshot-analytics-benefits-light.png': 'Detailed Benefits Breakdown',
-        'screenshot-calculator-result.png': 'Precision Results',
-        'screenshot-repeat-last-dose.png': 'Repeat Last Dose',
-        'screenshot-inventory-list.png': 'Inventory Overview'
-      },
-      'ipad': {
-        'ipad-calculator-dose.png': 'Personal Logging Calculator',
-        'ipad-calculator-semaglutide.png': 'Multi-Peptide Support',
-        'ipad-inventory.png': 'Smart Inventory Management',
-        'ipad-history.png': 'Dose History Details',
-        'ipad-analytics-usage.png': 'Top Performer Analysis',
-        'ipad-analytics-side-effects.png': 'Side Effects Tracking',
-        'ipad-analytics-benefits.png': 'Benefits Analysis',
-        'ipad-calculator-result.png': 'Precision Results',
-        'ipad-inventory-list.png': 'Inventory Overview',
-        'ipad-calendar.png': 'Calendar & Reminders'
-      }
-    };
+    // Device toggle functionality - Fixed version
+    document.addEventListener('DOMContentLoaded', function() {
+      const deviceTabs = document.querySelectorAll('.device-tab');
+      const screenshotsContainer = document.getElementById('screenshots-container');
+      
+      const screenshotMappings = {
+        'iphone': {
+          'screenshot-calculator-dose.png': 'Personal Logging Calculator',
+          'screenshot-calculator-semaglutide.png': 'Multi-Peptide Support',
+          'screenshot-inventory.png': 'Smart Inventory Management',
+          'screenshot-history.png': 'Complete Entry History',
+          'screenshot-analytics-overview.png': 'Analytics Overview',
+          'screenshot-analytics-usage.png': 'Usage Analytics',
+          'screenshot-analytics-side-effects.png': 'Side Effects Tracking',
+          'screenshot-analytics-benefits-dark.png': 'Benefits Analysis',
+          'screenshot-analytics-benefits-light.png': 'Detailed Benefits Breakdown',
+          'screenshot-calculator-result.png': 'Precision Results',
+          'screenshot-repeat-last-dose.png': 'Repeat Last Dose',
+          'screenshot-inventory-list.png': 'Inventory Overview'
+        },
+        'ipad': {
+          'ipad-calculator-dose.png': 'Personal Logging Calculator',
+          'ipad-calculator-semaglutide.png': 'Multi-Peptide Support',
+          'ipad-inventory.png': 'Smart Inventory Management',
+          'ipad-history.png': 'Dose History Details',
+          'ipad-analytics-usage.png': 'Top Performer Analysis',
+          'ipad-analytics-side-effects.png': 'Side Effects Tracking',
+          'ipad-analytics-benefits.png': 'Benefits Analysis',
+          'ipad-calculator-result.png': 'Precision Results',
+          'ipad-inventory-list.png': 'Inventory Overview',
+          'ipad-calendar.png': 'Calendar & Reminders'
+        }
+      };
     
     const descriptions = {
       'Personal Logging Calculator': 'Personal tracking calculations with visual guide and weight logging integration',
@@ -497,36 +498,37 @@
       'Top Performer Analysis': 'Algorithm-based effectiveness ranking with detailed breakdown and scoring'
     };
     
-    function updateScreenshots(device) {
-      const screenshots = screenshotMappings[device];
-      let html = '';
-      
-      Object.entries(screenshots).forEach(([filename, title]) => {
-        const description = descriptions[title];
-        html += `
-          <div class="screenshot-item">
-            <img src="${filename}" alt="${title}" class="screenshot-img">
-            <div class="screenshot-caption">
-              <h4>${title}</h4>
-              <p>${description}</p>
+      function updateScreenshots(device) {
+        const screenshots = screenshotMappings[device];
+        let html = '';
+        
+        Object.entries(screenshots).forEach(([filename, title]) => {
+          const description = descriptions[title];
+          html += `
+            <div class="screenshot-item">
+              <img src="${filename}" alt="${title}" class="screenshot-img">
+              <div class="screenshot-caption">
+                <h4>${title}</h4>
+                <p>${description}</p>
+              </div>
             </div>
-          </div>
-        `;
+          `;
+        });
+        
+        screenshotsContainer.innerHTML = html;
+      }
+      
+      deviceTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+          deviceTabs.forEach(t => t.classList.remove('active'));
+          tab.classList.add('active');
+          updateScreenshots(tab.dataset.device);
+        });
       });
       
-      screenshotsContainer.innerHTML = html;
-    }
-    
-    deviceTabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        deviceTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-        updateScreenshots(tab.dataset.device);
-      });
+      // Initialize with iPhone screenshots on page load
+      updateScreenshots('iphone');
     });
-    
-    // Initialize with iPhone screenshots on page load
-    updateScreenshots('iphone');
   </script>
   <script>
     (function () {
