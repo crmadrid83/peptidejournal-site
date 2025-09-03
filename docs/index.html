@@ -432,7 +432,7 @@
     </div>
   </footer>
   <script>
-    // Dark mode toggle
+    // Dark mode toggle (guarded)
     const toggleButton = document.getElementById('theme-toggle');
     const body = document.body;
     
@@ -440,11 +440,13 @@
     const currentTheme = localStorage.getItem('theme') || 'light';
     body.className = `theme-${currentTheme}`;
     
-    toggleButton.addEventListener('click', () => {
-      const isLight = body.classList.contains('theme-light');
-      body.className = isLight ? 'theme-dark' : 'theme-light';
-      localStorage.setItem('theme', isLight ? 'dark' : 'light');
-    });
+    if (toggleButton) {
+      toggleButton.addEventListener('click', () => {
+        const isLight = body.classList.contains('theme-light');
+        body.className = isLight ? 'theme-dark' : 'theme-light';
+        localStorage.setItem('theme', isLight ? 'dark' : 'light');
+      });
+    }
     
     // Device toggle functionality - Fixed version
     function initializeDeviceToggle() {
@@ -550,8 +552,7 @@
       }
     }
     
-    // Initialize on DOM ready and as fallback
-    document.addEventListener('DOMContentLoaded', initializeDeviceToggle);
+    // Initialize on DOM ready or immediately if already loaded
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', initializeDeviceToggle);
     } else {
