@@ -479,23 +479,23 @@
         }
       };
     
-    const descriptions = {
-      'Personal Logging Calculator': 'Personal tracking calculations with visual guide and weight logging integration',
-      'Multi-Peptide Support': 'Log entries for various peptides with different tracking types and concentrations',
-      'Smart Inventory Management': 'Track multiple peptides, remaining doses, and get low-stock alerts',
-      'Complete Entry History': 'Log every entry with timestamps, methods, and effects for comprehensive personal records',
-      'Analytics Overview': 'Complete analytics dashboard with top performer, stats, and data visualization options',
-      'Usage Analytics': 'Monitor logging patterns, consistency, and overall personal tracking progress',
-      'Side Effects Tracking': 'Detailed monitoring and visualization of any adverse reactions',
-      'Benefits Analysis': 'Comprehensive tracking of positive effects across multiple categories',
-      'Detailed Benefits Breakdown': 'Track workout recovery, sleep quality, mood improvements, and more',
-      'Precision Results': 'Accurate measurements with clear logging entries and volume tracking',
-      'Repeat Last Dose': 'Quickly log the same dose with volume, route, and stock reminder',
-      'Inventory Overview': 'See active peptides, doses remaining, and quick actions at a glance',
-      'Calendar & Reminders': 'Visual scheduling system with intelligent notifications',
-      'Dose History Details': 'Detailed dose information with administration details and effects tracking',
-      'Top Performer Analysis': 'Algorithm-based effectiveness ranking with detailed breakdown and scoring'
-    };
+      const descriptions = {
+        'Personal Logging Calculator': 'Personal tracking calculations with visual guide and weight logging integration',
+        'Multi-Peptide Support': 'Log entries for various peptides with different tracking types and concentrations',
+        'Smart Inventory Management': 'Track multiple peptides, remaining doses, and get low-stock alerts',
+        'Complete Entry History': 'Log every entry with timestamps, methods, and effects for comprehensive personal records',
+        'Analytics Overview': 'Complete analytics dashboard with top performer, stats, and data visualization options',
+        'Usage Analytics': 'Monitor logging patterns, consistency, and overall personal tracking progress',
+        'Side Effects Tracking': 'Detailed monitoring and visualization of any adverse reactions',
+        'Benefits Analysis': 'Comprehensive tracking of positive effects across multiple categories',
+        'Detailed Benefits Breakdown': 'Track workout recovery, sleep quality, mood improvements, and more',
+        'Precision Results': 'Accurate measurements with clear logging entries and volume tracking',
+        'Repeat Last Dose': 'Quickly log the same dose with volume, route, and stock reminder',
+        'Inventory Overview': 'See active peptides, doses remaining, and quick actions at a glance',
+        'Calendar & Reminders': 'Visual scheduling system with intelligent notifications',
+        'Dose History Details': 'Detailed dose information with administration details and effects tracking',
+        'Top Performer Analysis': 'Algorithm-based effectiveness ranking with detailed breakdown and scoring'
+      };
     
       function updateScreenshots(device) {
         const screenshots = screenshotMappings[device];
@@ -517,16 +517,31 @@
         screenshotsContainer.innerHTML = html;
       }
       
-      deviceTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          deviceTabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          updateScreenshots(tab.dataset.device);
+      // Add event listeners with proper error handling
+      if (deviceTabs && screenshotsContainer) {
+        deviceTabs.forEach(tab => {
+          tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Tab clicked:', tab.dataset.device);
+            
+            // Remove active class from all tabs
+            deviceTabs.forEach(t => t.classList.remove('active'));
+            // Add active class to clicked tab
+            tab.classList.add('active');
+            
+            // Update screenshots
+            const device = tab.dataset.device;
+            if (device && screenshotMappings[device]) {
+              updateScreenshots(device);
+              console.log('Updated to:', device);
+            }
+          });
         });
-      });
-      
-      // Initialize with iPhone screenshots on page load
-      updateScreenshots('iphone');
+        
+        // Initialize with iPhone screenshots on page load
+        updateScreenshots('iphone');
+        console.log('Screenshot toggle initialized');
+      }
     });
   </script>
   <script>
