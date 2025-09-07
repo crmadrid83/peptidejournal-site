@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PeptideJournal - CSV Import/Export Guide</title>
+    <style>
+        :root { color-scheme: dark; }
+        * { box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            line-height: 1.6;
+            background: #0a0e1a;
+            color: #ffffff;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: #1a1d29;
+            border-radius: 16px;
+            padding: 40px;
+            margin: 20px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            max-width: 1200px;
+            margin: 20px auto;
+            border: 1px solid #2a2d3a;
+        }
+        
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+            font-weight: 700;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #8e9aaf;
+            margin-bottom: 40px;
+            font-size: 1.2em;
+        }
+        
+        h2 {
+            color: #007AFF;
+            border-bottom: 2px solid #007AFF;
+            padding-bottom: 10px;
+            margin-top: 40px;
+            font-weight: 700;
+        }
+        
+        h3 {
+            color: #ffffff;
+            margin-top: 30px;
+            font-weight: 600;
+        }
+        
+        h4 {
+            color: #007AFF;
+            margin-top: 25px;
+            font-weight: 600;
+        }
+        
+        .required {
+            background: #2d1b1b;
+            border-left: 4px solid #ff453a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #3d2b2b;
+        }
+        
+        .optional {
+            background: #1b2d1b;
+            border-left: 4px solid #30d158;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #2b3d2b;
+        }
+        
+        .effects {
+            background: #2d2a1b;
+            border-left: 4px solid #ff9f0a;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            border: 1px solid #3d3a2b;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: #2a2d3a;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+        
+        th, td {
+            border: 1px solid #3a3d4a;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        th {
+            background: #007AFF;
+            font-weight: 600;
+            color: #ffffff;
+        }
+        
+        tr:nth-child(even) {
+            background: #232631;
+        }
+        
+        .code {
+            background: #2a2d3a;
+            color: #007AFF;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            border: 1px solid #3a3d4a;
+        }
+        
+        .example {
+            background: #232631;
+            border: 1px solid #3a3d4a;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 24px 0;
+            overflow-x: auto;
+        }
+        
+        .example h5 {
+            margin-top: 0;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .csv-table {
+            font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+            font-size: 0.9em;
+            white-space: nowrap;
+        }
+        
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: #232631;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #3a3d4a;
+            border-left: 4px solid #007AFF;
+        }
+        
+        .feature-card h4 {
+            margin-top: 0;
+            color: #ffffff;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            color: #8e9aaf;
+            margin: 0;
+        }
+        
+        .checkmark {
+            color: #30d158;
+            font-weight: bold;
+        }
+        
+        .warning {
+            background: #2d2a1b;
+            border: 1px solid #4a4631;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            border-left: 4px solid #ff9f0a;
+        }
+        
+        .warning strong {
+            color: #ff9f0a;
+        }
+        
+        .toc {
+            background: #232631;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 30px 0;
+            border: 1px solid #3a3d4a;
+        }
+        
+        .toc ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .toc li {
+            margin: 8px 0;
+        }
+        
+        .toc a {
+            color: #007AFF;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            transition: background 0.2s;
+            display: block;
+        }
+        
+        .toc a:hover {
+            background: #2a2d3a;
+        }
+        
+        p {
+            color: #d1d5db;
+        }
+        
+        li {
+            color: #d1d5db;
+        }
+        
+        footer {
+            margin-top: 50px; 
+            padding-top: 30px; 
+            border-top: 1px solid #3a3d4a; 
+            text-align: center; 
+            color: #8e9aaf;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📊 PeptideJournal</h1>
+        <p class="subtitle">CSV Import/Export User Guide</p>
+        
+        <div class="toc">
+            <h3>📋 Table of Contents</h3>
+            <ul>
+                <li><a href="#overview">Overview</a></li>
+                <li><a href="#export">Exporting Your Data</a></li>
+                <li><a href="#import">Importing Data</a></li>
+                <li><a href="#column-mapping">Column Header Mapping</a></li>
+                <li><a href="#examples">Example Spreadsheets</a></li>
+                <li><a href="#troubleshooting">Troubleshooting</a></li>
+            </ul>
+        </div>
+
+        <section id="overview">
+            <h2>🎯 What This Guide Does</h2>
+            <p>This guide helps you move your peptide tracking data between PeptideJournal and spreadsheet apps like Excel, Numbers, or Google Sheets. Whether you're backing up your data or importing from an existing spreadsheet, we've got you covered.</p>
+            
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h4><span class="checkmark">✅</span> Works with Any Spreadsheet</h4>
+                    <p>Import from Excel, Numbers, Google Sheets - no matter how your columns are named.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><span class="checkmark">✅</span> Fills in Missing Info</h4>
+                    <p>Don't worry about perfect data - we'll fill in reasonable defaults for missing fields.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><span class="checkmark">✅</span> Skips Bad Data</h4>
+                    <p>Extra columns or bad rows won't break the import - we just skip what doesn't work.</p>
+                </div>
+                <div class="feature-card">
+                    <h4><span class="checkmark">✅</span> Flexible Dates</h4>
+                    <p>Use any date format you prefer - MM/DD/YYYY, DD/MM/YYYY, or YYYY-MM-DD all work.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="export">
+            <h2>📤 Exporting Your Data</h2>
+            <p>To export your PeptideJournal data:</p>
+            <ol>
+                <li>Open the <strong>History</strong> tab in PeptideJournal</li>
+                <li>Tap the <strong>Export CSV</strong> button</li>
+                <li>Choose how to share the file (AirDrop, Files app, email, etc.)</li>
+                <li>The exported file will include all your dose entries with complete data</li>
+            </ol>
+            
+            <div class="warning">
+                <strong>Note:</strong> The exported CSV includes all tracked data including side effects, positive effects, and detailed dosing information. This provides a complete backup of your peptide journal.
+            </div>
+        </section>
+
+        <section id="import">
+            <h2>📥 Importing Your Spreadsheet</h2>
+            <p><strong>Quick Start:</strong> Just save your spreadsheet as a CSV file and import it! The app will figure out your column names automatically.</p>
+            
+            <div class="warning">
+                <strong>💡 Pro Tip:</strong> Your spreadsheet only needs a column with peptide names (like "Ipamorelin" or "BPC-157"). Everything else is optional - the app will fill in sensible defaults.
+            </div>
+            
+            <h3>Step-by-Step Import:</h3>
+            <ol>
+                <li><strong>Save as CSV:</strong> In Excel/Numbers, go to File → Export → CSV</li>
+                <li><strong>Open PeptideJournal:</strong> Go to the History tab</li>
+                <li><strong>Tap Import:</strong> Hit the "Import CSV" button</li>
+                <li><strong>Pick Your File:</strong> Choose your CSV from Files or iCloud</li>
+                <li><strong>Review:</strong> The app will show you what it found and ask about missing peptides</li>
+                <li><strong>Import:</strong> Tap confirm and you're done!</li>
+            </ol>
+        </section>
+
+        <section id="column-mapping">
+            <h2>🗂️ How to Name Your Columns</h2>
+            <p>The app automatically recognizes different column names. Use any of these names in your spreadsheet:</p>
+            
+            <div class="required">
+                <h3>🔴 Must Have (Required)</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>What It's For</th>
+                            <th>Column Names That Work</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Peptide Name</strong></td>
+                            <td><span class="code">peptide</span>, <span class="code">compound</span>, <span class="code">drug</span>, <span class="code">medication</span></td>
+                            <td>Ipamorelin, BPC-157, Semaglutide</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="optional">
+                <h3>🟢 Optional Fields</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>App Field</th>
+                            <th>Accepted Column Headers</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Date</strong></td>
+                            <td><span class="code">date</span>, <span class="code">injection_date</span>, <span class="code">dose_date</span>, <span class="code">timestamp</span></td>
+                            <td>Supports MM/dd/yyyy, yyyy-MM-dd, dd/MM/yyyy formats</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Time</strong></td>
+                            <td><span class="code">time</span>, <span class="code">injection_time</span>, <span class="code">dose_time</span></td>
+                            <td>Supports HH:mm, h:mm a formats (defaults to 12:00 PM)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dose (mg)</strong></td>
+                            <td><span class="code">mg</span>, <span class="code">dose_mg</span>, <span class="code">milligrams</span>, <span class="code">dose</span></td>
+                            <td>Primary dose field in milligrams</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dose (mcg)</strong></td>
+                            <td><span class="code">mcg</span>, <span class="code">dose_mcg</span>, <span class="code">micrograms</span></td>
+                            <td>Automatically converts to mg (1000 mcg = 1 mg)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Volume</strong></td>
+                            <td><span class="code">ml</span>, <span class="code">volume</span>, <span class="code">volume_ml</span>, <span class="code">milliliters</span>, <span class="code">dose_volume</span></td>
+                            <td>Injection volume in milliliters (defaults to 0.1 ml)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Route</strong></td>
+                            <td><span class="code">route</span>, <span class="code">injection_route</span>, <span class="code">administration_route</span></td>
+                            <td>subcutaneous, intramuscular, other (defaults to subcutaneous)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Site</strong></td>
+                            <td><span class="code">site</span>, <span class="code">injection_site</span>, <span class="code">location</span></td>
+                            <td>Injection location (e.g., "abdomen", "thigh")</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Notes</strong></td>
+                            <td><span class="code">notes</span>, <span class="code">comments</span>, <span class="code">remarks</span>, <span class="code">description</span></td>
+                            <td>Free text notes about the dose</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Batch</strong></td>
+                            <td><span class="code">batch</span>, <span class="code">batch_number</span>, <span class="code">lot</span>, <span class="code">lot_number</span></td>
+                            <td>Product batch information</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Brand</strong></td>
+                            <td><span class="code">brand</span>, <span class="code">manufacturer</span>, <span class="code">supplier</span></td>
+                            <td>Product brand or manufacturer</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="effects">
+                <h3>🩺 Side Effects Tracking</h3>
+                
+                <h4>Individual Side Effects (use exact names):</h4>
+                <table class="csv-table">
+                    <thead>
+                        <tr>
+                            <th>Column Header</th>
+                            <th>Values</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span class="code">nausea</span></td><td>1, yes, true, x</td><td>Nausea</td></tr>
+                        <tr><td><span class="code">diarrhea</span></td><td>1, yes, true, x</td><td>Diarrhea</td></tr>
+                        <tr><td><span class="code">vomiting</span></td><td>1, yes, true, x</td><td>Vomiting</td></tr>
+                        <tr><td><span class="code">constipation</span></td><td>1, yes, true, x</td><td>Constipation</td></tr>
+                        <tr><td><span class="code">abdominalPain</span></td><td>1, yes, true, x</td><td>Abdominal pain / indigestion</td></tr>
+                        <tr><td><span class="code">headache</span></td><td>1, yes, true, x</td><td>Headache</td></tr>
+                        <tr><td><span class="code">flushing</span></td><td>1, yes, true, x</td><td>Flushing</td></tr>
+                        <tr><td><span class="code">fatigue</span></td><td>1, yes, true, x</td><td>Fatigue</td></tr>
+                        <tr><td><span class="code">dizziness</span></td><td>1, yes, true, x</td><td>Dizziness / lightheadedness</td></tr>
+                        <tr><td><span class="code">injectionSiteReaction</span></td><td>1, yes, true, x</td><td>Injection-site reaction (pain/redness/itch)</td></tr>
+                        <tr><td><span class="code">decreasedAppetite</span></td><td>1, yes, true, x</td><td>Decreased appetite</td></tr>
+                        <tr><td><span class="code">bloating</span></td><td>1, yes, true, x</td><td>Bloating / abdominal distension</td></tr>
+                        <tr><td><span class="code">jointMusclePin</span></td><td>1, yes, true, x</td><td>Joint or muscle pain</td></tr>
+                        <tr><td><span class="code">peripheralEdema</span></td><td>1, yes, true, x</td><td>Peripheral edema (swelling)</td></tr>
+                    </tbody>
+                </table>
+                
+                <h4>Custom Side Effects (free text):</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column Headers</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="code">other_side_effects</span>, <span class="code">other_side_effect</span>, <span class="code">side_effects_other</span>, <span class="code">other_sides</span></td>
+                            <td>Free text for custom side effects (e.g., "Mild drowsiness", "Slight nausea")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="effects">
+                <h3>✨ Positive Effects Tracking</h3>
+                
+                <h4>Individual Positive Effects (use exact names):</h4>
+                <table class="csv-table">
+                    <thead>
+                        <tr>
+                            <th>Column Header</th>
+                            <th>Values</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span class="code">reducedAppetite</span></td><td>1, yes, true, x</td><td>Reduced appetite / earlier satiety</td></tr>
+                        <tr><td><span class="code">fewerCravings</span></td><td>1, yes, true, x</td><td>Fewer cravings (sweets/alcohol/snacking)</td></tr>
+                        <tr><td><span class="code">weightLoss</span></td><td>1, yes, true, x</td><td>Weight loss / waist reduction</td></tr>
+                        <tr><td><span class="code">steadierBloodSugar</span></td><td>1, yes, true, x</td><td>Steadier blood sugar / fewer highs & lows</td></tr>
+                        <tr><td><span class="code">moreEnergy</span></td><td>1, yes, true, x</td><td>More energy / less fatigue</td></tr>
+                        <tr><td><span class="code">improvedMood</span></td><td>1, yes, true, x</td><td>Improved mood / well-being</td></tr>
+                        <tr><td><span class="code">betterSleep</span></td><td>1, yes, true, x</td><td>Better sleep quality</td></tr>
+                        <tr><td><span class="code">improvedFocus</span></td><td>1, yes, true, x</td><td>Improved focus / mental clarity</td></tr>
+                        <tr><td><span class="code">improvedSexual</span></td><td>1, yes, true, x</td><td>Improved sexual desire / function</td></tr>
+                        <tr><td><span class="code">lessSoreness</span></td><td>1, yes, true, x</td><td>Less joint or muscle soreness</td></tr>
+                        <tr><td><span class="code">fasterRecovery</span></td><td>1, yes, true, x</td><td>Faster workout recovery</td></tr>
+                        <tr><td><span class="code">improvedEndurance</span></td><td>1, yes, true, x</td><td>Improved exercise tolerance/endurance</td></tr>
+                        <tr><td><span class="code">lessBloating</span></td><td>1, yes, true, x</td><td>Less bloating / improved GI comfort</td></tr>
+                        <tr><td><span class="code">skinTanning</span></td><td>1, yes, true, x</td><td>Skin tanning / photoprotection (melanocortin class)</td></tr>
+                        <tr><td><span class="code">improvedSkin</span></td><td>1, yes, true, x</td><td>Improved skin appearance (tone/texture)</td></tr>
+                    </tbody>
+                </table>
+                
+                <h4>Custom Positive Effects (free text):</h4>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Column Headers</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="code">other_positive_effects</span>, <span class="code">other_positive_effect</span>, <span class="code">positive_effects_other</span>, <span class="code">other_benefits</span>, <span class="code">other_positives</span></td>
+                            <td>Free text for custom positive effects (e.g., "Better focus", "Faster healing")</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="examples">
+            <h2>📝 Example Spreadsheets</h2>
+            
+            <div class="example">
+                <h5>Minimal Setup (Required Field Only):</h5>
+                <table class="csv-table">
+                    <thead>
+                        <tr>
+                            <th>peptide</th>
+                            <th>mg</th>
+                            <th>date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ipamorelin</td>
+                            <td>250</td>
+                            <td>2025-01-15</td>
+                        </tr>
+                        <tr>
+                            <td>BPC-157</td>
+                            <td>300</td>
+                            <td>2025-01-16</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="example">
+                <h5>Complete Setup with All Fields:</h5>
+                <table class="csv-table">
+                    <thead>
+                        <tr>
+                            <th>compound</th>
+                            <th>dose</th>
+                            <th>volume</th>
+                            <th>date</th>
+                            <th>time</th>
+                            <th>route</th>
+                            <th>site</th>
+                            <th>notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ipamorelin</td>
+                            <td>250</td>
+                            <td>0.25</td>
+                            <td>01/15/2025</td>
+                            <td>8:30 AM</td>
+                            <td>subcutaneous</td>
+                            <td>abdomen</td>
+                            <td>Morning dose</td>
+                        </tr>
+                        <tr>
+                            <td>BPC-157</td>
+                            <td>300</td>
+                            <td>0.30</td>
+                            <td>01/16/2025</td>
+                            <td>9:00 PM</td>
+                            <td>subcutaneous</td>
+                            <td>thigh</td>
+                            <td>Evening dose</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="example">
+                <h5>With Effects Tracking:</h5>
+                <table class="csv-table">
+                    <thead>
+                        <tr>
+                            <th>peptide</th>
+                            <th>mg</th>
+                            <th>date</th>
+                            <th>nausea</th>
+                            <th>other_side_effects</th>
+                            <th>moreEnergy</th>
+                            <th>other_positive_effects</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ipamorelin</td>
+                            <td>250</td>
+                            <td>2025-01-15</td>
+                            <td>0</td>
+                            <td></td>
+                            <td>1</td>
+                            <td>Better focus and clarity</td>
+                        </tr>
+                        <tr>
+                            <td>BPC-157</td>
+                            <td>300</td>
+                            <td>2025-01-16</td>
+                            <td>1</td>
+                            <td>Mild drowsiness</td>
+                            <td>0</td>
+                            <td>Faster wound healing</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="example">
+                <h5>Using Micrograms (mcg) Instead of Milligrams:</h5>
+                <table class="csv-table">
+                    <thead>
+                        <tr>
+                            <th>compound</th>
+                            <th>micrograms</th>
+                            <th>injection_date</th>
+                            <th>comments</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Ipamorelin</td>
+                            <td>250</td>
+                            <td>01/15/2025</td>
+                            <td>Converted from 0.25mg</td>
+                        </tr>
+                        <tr>
+                            <td>BPC-157</td>
+                            <td>500</td>
+                            <td>01/16/2025</td>
+                            <td>Converted from 0.5mg</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section id="troubleshooting">
+            <h2>🔧 Troubleshooting</h2>
+            
+            <h3>Common Import Issues</h3>
+            
+            <div class="warning">
+                <strong>Issue:</strong> "CSV must contain a peptide/compound column"<br>
+                <strong>Solution:</strong> Ensure your CSV has at least one column with a header like <span class="code">peptide</span>, <span class="code">compound</span>, <span class="code">drug</span>, etc.
+            </div>
+            
+            <div class="warning">
+                <strong>Issue:</strong> "Could not read file as UTF-8"<br>
+                <strong>Solution:</strong> Re-export your CSV with UTF-8 encoding, or try exporting from Excel as "CSV UTF-8".
+            </div>
+            
+            <div class="warning">
+                <strong>Issue:</strong> Some rows are being skipped<br>
+                <strong>Solution:</strong> Check that skipped rows have valid peptide names and dose amounts. Empty or invalid data will be skipped safely.
+            </div>
+            
+            <h3>Export Issues</h3>
+            
+            <div class="warning">
+                <strong>Issue:</strong> Can't share or open exported CSV file<br>
+                <strong>Solution:</strong> Try using a different sharing method (Files app, AirDrop, email) or save to iCloud Drive first.
+            </div>
+            
+            <h3>Tips for Success</h3>
+            
+            <div class="feature-list">
+                <div class="feature-card">
+                    <h4>📊 Use Headers</h4>
+                    <p>Always include a header row with column names. The system relies on headers for automatic mapping.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>📅 Date Formats</h4>
+                    <p>Use consistent date formats. YYYY-MM-DD works best, but MM/DD/YYYY and DD/MM/YYYY are also supported.</p>
+                </div>
+                <div class="feature-card">
+                    <h4>🔢 Numeric Values</h4>
+                    <p>Use plain numbers for doses and volumes. Avoid units in the data cells (put units in column headers instead).</p>
+                </div>
+                <div class="feature-card">
+                    <h4>✨ Test Small</h4>
+                    <p>Test with a small CSV file first to ensure your format works before importing large datasets.</p>
+                </div>
+            </div>
+            
+            <h3>Smart Defaults</h3>
+            <p>The import system uses these defaults for missing data:</p>
+            <ul>
+                <li><strong>Date:</strong> Current date if not provided</li>
+                <li><strong>Time:</strong> 12:00 PM if not provided</li>
+                <li><strong>Volume:</strong> 0.1 ml if not provided</li>
+                <li><strong>Route:</strong> Subcutaneous if not provided</li>
+                <li><strong>Missing peptides:</strong> Option to create placeholder peptides during import</li>
+            </ul>
+        </section>
+
+        <footer style="margin-top: 50px; padding-top: 30px; border-top: 1px solid #eee; text-align: center; color: #7f8c8d;">
+            <p>PeptideJournal CSV Import/Export Guide • Version 1.0 • For questions or support, refer to the app's help section</p>
+        </footer>
+    </div>
+</body>
+</html>
