@@ -44,6 +44,19 @@
       margin: 0 auto; 
       gap: 12px; 
     }
+    .nav-links { 
+      display: flex; 
+      gap: 14px; 
+    }
+    .nav-links a { 
+      color: #e8e8e8; 
+      text-decoration: none; 
+      font-weight: 600; 
+      transition: color 0.2s; 
+    }
+    .nav-links a:hover { 
+      color: #64B5F6; 
+    }
     .brand { 
       font-weight: 800; 
       letter-spacing: 0.2px; 
@@ -416,7 +429,14 @@
         <img src="app-logo.jpg" alt="PeptideJournal" class="brand-logo">
         PeptideJournal
       </a>
-      <a href="https://peptidejournal.net/" class="back-link">← Back to Home</a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="user-guide.html" aria-current="page">User Guide</a>
+        <a href="support.html">Support</a>
+        <a href="privacy-policy.html">Privacy</a>
+        <a href="terms-of-use.html">Terms</a>
+        <a href="index.html#disclaimer">Disclaimer</a>
+      </div>
     </nav>
   </header>
 
